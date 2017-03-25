@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="NexTex:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b026aef-1a70-4961-935d-5c2aacbfe38a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/Server.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TinyChat.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/TinyChat.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/TinyChat.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/TinyChat.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/TinyChat.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/TinyChat.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/app/TinyChat.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/app/TinyChat.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/msvcp120.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/msvcr100.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/msvcr120.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/packager.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/COPYRIGHT" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/THIRDPARTYLICENSEREADME-JAVAFX.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/THIRDPARTYLICENSEREADME.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/Welcome.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/JAWTAccessBridge-64.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/JavaAccessBridge-64.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/WindowsAccessBridge-64.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/attach.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/awt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/bci.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/dcpr.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/decora_sse.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/deploy.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/dt_shmem.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/dt_socket.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/fontmanager.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/fxplugins.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/glass.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/glib-lite.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/gstreamer-lite.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/hprof.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/instrument.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/j2pcsc.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/j2pkcs11.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jaas_nt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/java.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/java_crw_demo.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/javafx_font.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/javafx_font_t2k.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/javafx_iio.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jawt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jdwp.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jfr.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jfxmedia.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jfxwebkit.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jli.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jpeg.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jsdt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jsound.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/jsoundds.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/kcms.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/lcms.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/management.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/mlib_image.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/msvcp120.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/msvcr100.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/msvcr120.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/net.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/nio.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/npt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/plugin2/msvcr100.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/plugin2/npjp2.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/prism_common.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/prism_d3d.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/prism_sw.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/resource.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/sawindbg.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/server/Xusage.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/server/classes.jsa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/server/jvm.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/splashscreen.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/sunec.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/sunmscapi.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/t2k.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/unpack.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/verify.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/w2k_lsa_auth.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/bin/zip.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/accessibility.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/amd64/jvm.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/calendars.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/charsets.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/classlist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/cmm/CIEXYZ.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/cmm/GRAY.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/cmm/LINEAR_RGB.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/cmm/PYCC.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/cmm/sRGB.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/content-types.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/currency.data" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/access-bridge-64.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/cldrdata.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/dnsns.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/jaccess.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/jfxrt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/localedata.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/meta-index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/nashorn.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/sunec.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/sunjce_provider.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/sunmscapi.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/sunpkcs11.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/ext/zipfs.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/flavormap.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fontconfig.bfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fontconfig.properties.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaBrightDemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaBrightDemiItalic.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaBrightItalic.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaBrightRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaSansDemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaSansRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaTypewriterBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/fonts/LucidaTypewriterRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/hijrah-config-umalqura.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/cursors.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/invalid32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_CopyDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_CopyNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_LinkDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_LinkNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_MoveDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/images/cursors/win32_MoveNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/javafx.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/javaws.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jce.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jfr.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jfr/default.jfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jfr/profile.jfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jfxswt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jsse.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/jvm.hprof.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/logging.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/management-agent.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/management/jmxremote.access" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/management/jmxremote.password.template" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/management/management.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/management/snmp.acl.template" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/meta-index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/net.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/plugin.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/psfont.properties.ja" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/psfontj2d.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/resources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/rt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/US_export_policy.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/blacklist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/blacklisted.certs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/cacerts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/java.policy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/java.security" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/javaws.policy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/local_policy.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/security/trusted.libraries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/sound.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/tzdb.dat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TinyChat/bundles/TinyChat/runtime/lib/tzmappings" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/ChatCommands.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/Client.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/Graphics$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/Graphics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/MainHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TinyChat/Server.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Server.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ChatCommands.java" afterPath="$PROJECT_DIR$/src/core/ChatCommands.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Client.java" afterPath="$PROJECT_DIR$/src/client/Client.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Graphics.java" afterPath="$PROJECT_DIR$/src/core/Graphics.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MainHandler.java" afterPath="$PROJECT_DIR$/src/core/MainHandler.java" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Graphics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/Graphics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/MainHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="37" column="44" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+              <folding>
+                <element signature="e#368#369#0" expanded="true" />
+                <element signature="e#414#415#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatCommands.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/ChatCommands.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1348">
+              <caret line="83" column="82" lean-forward="true" selection-start-line="83" selection-start-column="82" selection-end-line="83" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/core/Graphics.java" />
+        <option value="$PROJECT_DIR$/src/core/MainHandler.java" />
+        <option value="$PROJECT_DIR$/src/core/ChatCommands.java" />
+        <option value="$PROJECT_DIR$/src/server/Server.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NexTex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.MainHandler">
+    <configuration default="false" name="MainHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="core.MainHandler" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="NexTex" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="NexTex" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.MainHandler" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.MainHandler" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b026aef-1a70-4961-935d-5c2aacbfe38a" name="Default" comment="" />
+      <created>1490372710239</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1490372710239</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26868907" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123667374" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/core/Graphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/MainHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="58" lean-forward="true" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding>
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ChatCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="185" lean-forward="true" selection-start-line="75" selection-start-column="185" selection-end-line="75" selection-end-column="185" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Graphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/MainHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ChatCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1348">
+          <caret line="83" column="82" lean-forward="true" selection-start-line="83" selection-start-column="82" selection-end-line="83" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="37" column="44" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding>
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>NexTex:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>NexTex</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
