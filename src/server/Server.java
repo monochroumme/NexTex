@@ -29,7 +29,7 @@ public class Server {
 
     private void startServer(){
         try {
-            MainHandler.graphics.log("Сервер с портом "  + port + " запущен", false, false);
+            MainHandler.graphics.log("<html><font face='verdana' color='green'>Сервер с портом </font><font face='arial' color='white'>"  + port + "</font><font face='verdana' color='green'> запущен</font></html>", false, false, false);
             new Thread(() -> {
                 try {
                     serverSocket = new ServerSocket(port);
@@ -39,11 +39,11 @@ public class Server {
                         //TODO
                     }
                 } catch (Exception e){
-                    e.printStackTrace();
+                    System.out.println("Own server is closed");
                 }
             }).start();
         } catch (Exception e) {
-            MainHandler.graphics.log("Невозможно запустить сервер. Возможно, сервер с текущим портом уже открыт", false, false);
+            MainHandler.graphics.log("<html><font face='verdana' color='red'>Невозможно запустить сервер. Возможно, сервер с текущим портом уже открыт</font></html>", false, false, false);
         }
     }
 
@@ -53,5 +53,9 @@ public class Server {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateClientsList(){
+
     }
 }

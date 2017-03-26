@@ -3,6 +3,8 @@ package core;
 import client.Client;
 import server.Server;
 
+import java.util.ArrayList;
+
 /**
  * Created by nadir on 11.03.2017.
  */
@@ -12,6 +14,7 @@ public class MainHandler {
     public static final int DEFAULT_PORT = 22869;
     public static Server server;
     public static boolean ownServer = false;
+    public static ArrayList<String> lastFoundServers = new ArrayList<>();
 
     public static void main(String[] args) {
         MainHandler ch =  new MainHandler();

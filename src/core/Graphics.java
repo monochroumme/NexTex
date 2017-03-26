@@ -2,11 +2,18 @@ package core;
 
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 /**
  * Created by nadir on 12.03.2017.
@@ -14,14 +21,16 @@ import java.awt.event.WindowEvent;
 
 public class Graphics extends JFrame {
     private final String TITLE = "NexTex";
-    private final int FRM_WIDTH = 755;
+    private final int FRM_WIDTH = 800;
     private final int FRM_HEIGHT = 490;
 
     private JPanel panelMain;
     private JPanel panelChat;
     private JPanel panelInput;
     private JButton sendBut;
-    public JTextArea msgOutputTA;
+    private JEditorPane msgOutputEP;
+    private HTMLDocument doc;
+    private HTMLEditorKit edit;
     public JTextField msgInputTF;
     public JList listOfUsers;
 
@@ -33,20 +42,24 @@ public class Graphics extends JFrame {
         draw();
         setVisible(true);
         handleInserts();
+
+        // setting doc to edit output
+        log("<html><font face='arial' color='green'>/help</font><font face='arial' color='white'> - помощь</font>\n</html>", false, false, false);
     }
 
     public void draw() {
         // Window presets
         setTitle(TITLE);
         setSize(FRM_WIDTH, FRM_HEIGHT);
-        setResizable(false);
+        setMinimumSize(new Dimension(FRM_WIDTH, FRM_HEIGHT));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // TODO отправлять серверу инфу о выходе при закрытии проги
         setLocationRelativeTo(null);
         UIManager.put("ToolTip.background", new ColorUIResource(secondaryColor));
         UIManager.put("ToolTip.foreground", new ColorUIResource(Color.white));
+        UIManager.put("ToolTip.border", new ColorUIResource(Color.black));
 
         // Main panel for holding other panels
-        panelMain = new JPanel();
+        panelMain = new JPanel(new BorderLayout());
         panelMain.setVisible(false);
         panelMain.setForeground(Color.white);
         panelMain.setSize(FRM_WIDTH, FRM_HEIGHT);
@@ -54,32 +67,38 @@ public class Graphics extends JFrame {
         getContentPane().add(panelMain);
 
         //Panel for holding chat and list of users
-        panelChat = new JPanel();
+        panelChat = new JPanel(new BorderLayout());
         panelChat.setVisible(false);
         panelChat.setBackground(chatColor);
-        panelChat.setPreferredSize(new Dimension(800, 415));
+        panelChat.setPreferredSize(new Dimension(800, 0));
 
         //Panel for holding send button and textField
-        panelInput = new JPanel();
+        panelInput = new JPanel(new BorderLayout());
         panelInput.setVisible(false);
         panelInput.setBackground(chatColor);
-        panelInput.setPreferredSize(new Dimension(800, 35));
+        panelInput.setPreferredSize(new Dimension(800, 20));
 
         // Components' presets
-        msgOutputTA = new JTextArea(25, 49); // 27, 67
+        msgOutputEP = new JTextPane(); // 27, 67
+        msgOutputEP.setContentType( "text/html" );
         //msgOutputTA.setPreferredSize(new Dimension(535, 408));
-        msgOutputTA.setText("/help - помощь\n");
-        msgOutputTA.setBackground(chatColor);
-        msgOutputTA.setForeground(Color.white);
-        msgOutputTA.setLineWrap(true);
-        msgOutputTA.setWrapStyleWord(true);
-        msgOutputTA.setEditable(false);
-        msgOutputTA.setSelectionColor(selectionColor);
-        msgOutputTA.setSelectedTextColor(Color.white);
-        JScrollPane msgOutputTASP = new JScrollPane(msgOutputTA);
-        msgOutputTASP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        msgOutputTASP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        msgOutputTASP.setAutoscrolls(true);
+        msgOutputEP.setText("");
+        msgOutputEP.setBackground(chatColor);
+        msgOutputEP.setForeground(Color.white);
+        msgOutputEP.setAutoscrolls(true);
+        //msgOutputTA.setWrapping(true);
+        //msgOutputTA.setWrapStyleWord(true);
+        msgOutputEP.setEditable(false);
+        msgOutputEP.setSelectionColor(selectionColor);
+        msgOutputEP.setSelectedTextColor(Color.white);
+        JScrollPane msgOutputEPSP = new JScrollPane(msgOutputEP);
+        msgOutputEPSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        msgOutputEPSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        msgOutputEPSP.setAutoscrolls(true);
+        msgOutputEPSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        doc = (HTMLDocument) msgOutputEP.getDocument();
+        edit = (HTMLEditorKit) msgOutputEP.getEditorKit();
+        msgOutputEP.setDocument(doc);
 
         msgInputTF = new JTextField(62);
         msgInputTF.setBackground(secondaryColor);
@@ -88,9 +107,10 @@ public class Graphics extends JFrame {
         msgInputTF.setCaretColor(Color.white);
         msgInputTF.setSelectionColor(selectionColor);
         msgInputTF.setSelectedTextColor(Color.white);
+        msgInputTF.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
 
-        sendBut = new JButton("➥"); // TODO Change the font of button to make this arrow look nice
+        sendBut = new JButton("➥");
         sendBut.setBackground(secondaryColor);
         sendBut.setForeground(Color.white);
         sendBut.setFocusPainted(false);
@@ -105,12 +125,13 @@ public class Graphics extends JFrame {
         JScrollPane listOfUsersSP = new JScrollPane(listOfUsers);
         listOfUsersSP.setPreferredSize(new Dimension(190, 403));
         listOfUsersSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        listOfUsersSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
         // Adding components to panels
         panelMain.add(panelChat, BorderLayout.CENTER);
         panelMain.add(panelInput, BorderLayout.SOUTH);
 
-        panelChat.add(msgOutputTASP, BorderLayout.CENTER);
+        panelChat.add(msgOutputEPSP, BorderLayout.CENTER);
         panelChat.add(listOfUsersSP, BorderLayout.EAST);
 
         panelInput.add(msgInputTF, BorderLayout.CENTER);
@@ -142,27 +163,40 @@ public class Graphics extends JFrame {
     }
 
     private void sendButtonPressed(){
-        if (!msgInputTF.getText().isEmpty() && !ChatCommands.isCommand(msgInputTF.getText())) { // TODO add if connectedToServer
-            if (!MainHandler.selfClient.nickname.equals("")) {
+        if (!msgInputTF.getText().isEmpty() && !ChatCommands.isCommand(msgInputTF.getText())) {
+            if (!MainHandler.selfClient.getNickname().equals("")) {
                 if (!isEmpty(msgInputTF.getText(), true))
-                    log(msgInputTF.getText(), true, true);
+                    log(msgInputTF.getText(), true, true, true);
             } else
-                log("Вы не можете отправлять сообщения пока у вас нету ника. Поставьте его написав:\n /set nickname <ВАШ_НИК> (без <> и без пробелов)", false, false);
+                log("<html><font face='verdana' color='red'>Вы не можете отправлять сообщения пока у вас нету ника.</font><font face='verdana' color='white'>" +
+                        " Поставьте его написав:</font><font face='arial' color='green'>\n /set nickname \t&lt;</font><font face='arial' color='white'>ВАШ_НИК</font><font face='arial' color='green'>" +
+                        "&gt;</font> <font face='verdana' color='white'>(без \t&lt;&gt; и без пробелов)</font></html>", false, false, false);
         }
     }
 
-    public void log(String message, boolean toServer, boolean withOwnNick) {
+    public void log(String message, boolean toServer, boolean withOwnNick, boolean addHtml) {
         if (toServer && withOwnNick) { // TODO
-            String msgToSend = MainHandler.selfClient.nickname + ": " + message + "\n";
-            msgOutputTA.append(msgToSend);
+            String msgToSend;
+            if (!addHtml)
+                msgToSend = MainHandler.selfClient.getNickname() + "<font face='arial' color='white'>: </font>" + message + "<br>";
+            else msgToSend = "<html>" + MainHandler.selfClient.getNickname() + "<font face='arial' color='white'>: " + message + "</font><br></html>";
+            try {
+                edit.insertHTML(doc, doc.getLength(), msgToSend + "\n", 0, 0, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             // TODO send it to server
         }
         else {
-            msgOutputTA.append(message + "\n");
+            try {
+                edit.insertHTML(doc, doc.getLength(),  message + "\n", 0, 0, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         msgInputTF.setText("");
-        msgOutputTA.setCaretPosition(msgOutputTA.getDocument().getLength());
+        msgOutputEP.setCaretPosition(msgOutputEP.getDocument().getLength()); // Autoscroll down
     }
 
     private boolean isEmpty(String string, boolean rude) {
@@ -171,7 +205,7 @@ public class Graphics extends JFrame {
         else {
             for (int i = 0; i < string.length(); i++) {
                 if (string.charAt(i) == ' ' && i == string.length() - 1 && rude) {
-                    log("Низя", false, false);
+                    log("<html><font face='verdana' color='brown'>Низя</font></html>", false, false, false);
                 }
                 else if (string.charAt(i) == ' ')
                     continue;
@@ -182,7 +216,7 @@ public class Graphics extends JFrame {
     }
 
     public void clearChat(){
-        msgOutputTA.setText("");
+        msgOutputEP.setText("");
         msgInputTF.setText("");
     }
 }
