@@ -1,11 +1,7 @@
-package core;
-
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.plaf.ColorUIResource;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.awt.*;
@@ -13,12 +9,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 /**
- * Created by nadir on 12.03.2017.
- **/
-
+ * Created by nadir on 02.04.2017.
+ */
 public class Graphics extends JFrame {
     private final String TITLE = "NexTex";
     private final int FRM_WIDTH = 800;
@@ -38,13 +32,13 @@ public class Graphics extends JFrame {
     private Color secondaryColor = new Color(65, 65, 65);
     private Color selectionColor = new Color(30, 100, 255);
 
+    private boolean waitingForNickname = true;
+
     public Graphics() {
         draw();
         setVisible(true);
         handleInserts();
-
-        // setting doc to edit output
-        log("<html><font face='arial' color='green'>/help</font><font face='arial' color='white'> - помощь</font>\n</html>", false, false, false);
+        log("<html><font face='arial' color='green'>/help</font><font face='arial' color='white'> - помощь</font><br><font face='arial' color='yellow'>Введите ваш ник:</font></html>");
     }
 
     public void draw() {
@@ -79,15 +73,12 @@ public class Graphics extends JFrame {
         panelInput.setPreferredSize(new Dimension(800, 20));
 
         // Components' presets
-        msgOutputEP = new JTextPane(); // 27, 67
+        msgOutputEP = new JTextPane();
         msgOutputEP.setContentType( "text/html" );
-        //msgOutputTA.setPreferredSize(new Dimension(535, 408));
         msgOutputEP.setText("");
         msgOutputEP.setBackground(chatColor);
         msgOutputEP.setForeground(Color.white);
         msgOutputEP.setAutoscrolls(true);
-        //msgOutputTA.setWrapping(true);
-        //msgOutputTA.setWrapStyleWord(true);
         msgOutputEP.setEditable(false);
         msgOutputEP.setSelectionColor(selectionColor);
         msgOutputEP.setSelectedTextColor(Color.white);
@@ -99,11 +90,12 @@ public class Graphics extends JFrame {
         doc = (HTMLDocument) msgOutputEP.getDocument();
         edit = (HTMLEditorKit) msgOutputEP.getEditorKit();
         msgOutputEP.setDocument(doc);
+        ((DefaultCaret) msgOutputEP.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         msgInputTF = new JTextField(62);
         msgInputTF.setBackground(secondaryColor);
         msgInputTF.setForeground(Color.white);
-        msgInputTF.setToolTipText("Напишите сообщение или команду и нажмите → или ENTER");
+        msgInputTF.setToolTipText("Напишите сообщение или команду и нажмите ➥ или ENTER");
         msgInputTF.setCaretColor(Color.white);
         msgInputTF.setSelectionColor(selectionColor);
         msgInputTF.setSelectedTextColor(Color.white);
@@ -138,14 +130,23 @@ public class Graphics extends JFrame {
         panelInput.add(sendBut, BorderLayout.EAST);
 
         // Enabling panels
-        panelMain.setVisible(true);
         panelChat.setVisible(true);
         panelInput.setVisible(true);
+        panelMain.setVisible(true);
 
-        // Set input area to be focused on open
+        // Set input area to be focused at startup
         addWindowListener( new WindowAdapter() {
             public void windowOpened( WindowEvent e ){
                 msgInputTF.requestFocus();
+            }
+        });
+
+        // Catch on exit
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) { // maybe problem in this
+                Main.selfClient.disconnect();
+                super.windowClosing(e);
             }
         });
     }
@@ -160,63 +161,67 @@ public class Graphics extends JFrame {
                     sendButtonPressed();
             }
         });
+
+        msgOutputEP.addHyperlinkListener(hl -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(hl.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(hl.getURL().toURI());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void sendButtonPressed(){
-        if (!msgInputTF.getText().isEmpty() && !ChatCommands.isCommand(msgInputTF.getText())) {
-            if (!MainHandler.selfClient.getNickname().equals("")) {
-                if (!isEmpty(msgInputTF.getText(), true))
-                    log(msgInputTF.getText(), true, true, true);
-            } else
-                log("<html><font face='verdana' color='red'>Вы не можете отправлять сообщения пока у вас нету ника.</font><font face='verdana' color='white'>" +
-                        " Поставьте его написав:</font><font face='arial' color='green'>\n /set nickname \t&lt;</font><font face='arial' color='white'>ВАШ_НИК</font><font face='arial' color='green'>" +
-                        "&gt;</font> <font face='verdana' color='white'>(без \t&lt;&gt; и без пробелов)</font></html>", false, false, false);
+        if(waitingForNickname){
+            if(!isEmpty(msgInputTF.getText()) && !contains(msgInputTF.getText(), new String[] {"<", ">", ":", ";"})) {
+                Main.selfClient.setNickname(msgInputTF.getText(), true);
+                waitingForNickname = false;
+                log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");
+                Main.selfClient.automaticallyConnect();
+            }
+            else {
+                log("<html><font face='arial' color='red'>Некорректный ник, введите заново:</font></html>");
+            }
+        }
+        else if (!isEmpty(msgInputTF.getText()) && !ChatCommands.isCommand(msgInputTF.getText())) {
+            Main.selfClient.sendMessage(msgInputTF.getText());
+        }
+        msgInputTF.setText(""); // Clear input line
+    }
+
+    void log(String message) {
+        try {
+            edit.insertHTML(doc, doc.getLength(), message, 0, 0, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public void log(String message, boolean toServer, boolean withOwnNick, boolean addHtml) {
-        if (toServer && withOwnNick) { // TODO
-            String msgToSend;
-            if (!addHtml)
-                msgToSend = MainHandler.selfClient.getNickname() + "<font face='arial' color='white'>: </font>" + message + "<br>";
-            else msgToSend = "<html>" + MainHandler.selfClient.getNickname() + "<font face='arial' color='white'>: " + message + "</font><br></html>";
-            try {
-                edit.insertHTML(doc, doc.getLength(), msgToSend + "\n", 0, 0, null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // TODO send it to server
-        }
-        else {
-            try {
-                edit.insertHTML(doc, doc.getLength(),  message + "\n", 0, 0, null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        msgInputTF.setText("");
-        msgOutputEP.setCaretPosition(msgOutputEP.getDocument().getLength()); // Autoscroll down
-    }
-
-    private boolean isEmpty(String string, boolean rude) {
+    private boolean isEmpty(String string) {
         if (string.isEmpty())
             return true;
         else {
             for (int i = 0; i < string.length(); i++) {
-                if (string.charAt(i) == ' ' && i == string.length() - 1 && rude) {
-                    log("<html><font face='verdana' color='brown'>Низя</font></html>", false, false, false);
-                }
-                else if (string.charAt(i) == ' ')
-                    continue;
-                else return false;
+                if(string.charAt(i) != ' ')
+                    return false;
             }
+            msgInputTF.setText("");
             return true;
         }
     }
 
-    public void clearChat(){
+    private boolean contains(String container, String[] chars){
+        for(String c : chars){
+            if(container.contains(c))
+                return true;
+        }
+        return false;
+    }
+
+    void clearChat() {
         msgOutputEP.setText("");
-        msgInputTF.setText("");
     }
 }
