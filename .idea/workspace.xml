@@ -7,28 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b026aef-1a70-4961-935d-5c2aacbfe38a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ChatCommands.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Client.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Graphics.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Server.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/client/Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/core/ChatCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/core/Graphics$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/core/Graphics$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/core/Graphics.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/core/MainHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/NexTex/server/Server.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/Client.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/core/ChatCommands.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/core/Graphics.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/core/MainHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/server/Server.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/NexTex_jar/NexTex.jar" afterPath="$PROJECT_DIR$/out/artifacts/NexTex_jar/NexTex.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ChatCommands.java" afterPath="$PROJECT_DIR$/src/ChatCommands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Client.java" afterPath="$PROJECT_DIR$/src/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server.java" afterPath="$PROJECT_DIR$/src/Server.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,16 +37,10 @@
       <file leaf-file-name="Graphics.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Graphics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-556">
+            <state relative-caret-position="2295">
               <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5735#5878#0" expanded="true" />
-                <element signature="e#5877#5878#0" expanded="true" />
-                <element signature="e#5933#6166#0" expanded="true" />
-                <element signature="e#6165#6166#0" expanded="true" />
-                <element signature="e#6308#6518#0" expanded="true" />
-                <element signature="e#6517#6518#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +49,8 @@
       <file leaf-file-name="ChatCommands.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="935">
+              <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,15 +58,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="799">
+              <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4338#4339#0" expanded="true" />
-                <element signature="e#4369#4370#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,12 +83,12 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2380">
-              <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+            <state relative-caret-position="838">
+              <caret line="144" column="9" lean-forward="false" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
+                <element signature="e#486#487#0" expanded="true" />
+                <element signature="e#518#519#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -140,6 +125,7 @@
       <find>graphics</find>
       <find>custom</find>
       <find>while</find>
+      <find>keepGoing</find>
     </findStrings>
     <replaceStrings>
       <replace>msgOutputEP</replace>
@@ -152,6 +138,7 @@
       <replace>Main</replace>
       <replace>arial</replace>
       <replace>Main.graphics</replace>
+      <replace>working</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -177,10 +164,11 @@
         <option value="$PROJECT_DIR$/src/server/Server.java" />
         <option value="$PROJECT_DIR$/src/Message.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Client.java" />
         <option value="$PROJECT_DIR$/src/Graphics.java" />
         <option value="$PROJECT_DIR$/src/ChatCommands.java" />
         <option value="$PROJECT_DIR$/src/Server.java" />
+        <option value="$PROJECT_DIR$/src/Client.java" />
+        <option value="$PROJECT_DIR$/src/Utils.java" />
       </list>
     </option>
   </component>
@@ -208,6 +196,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -236,7 +225,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
@@ -523,7 +511,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -535,7 +522,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14285715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1444563" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -546,6 +533,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
@@ -564,8 +552,14 @@
           </properties>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Client.java</url>
+          <line>83</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="31" />
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -574,7 +568,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/core/MainHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/client/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/core/PackageType.java" />
     <entry file="file://$PROJECT_DIR$/src/core/ChatCommands.java" />
@@ -626,6 +619,26 @@
     <entry file="file://$PROJECT_DIR$/src/server/Server.java" />
     <entry file="file://$PROJECT_DIR$/src/core/Graphics.java" />
     <entry file="file://$PROJECT_DIR$/src/Message.java" />
+    <entry file="file://$PROJECT_DIR$/src/Graphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2295">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -634,53 +647,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-556">
-          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5735#5878#0" expanded="true" />
-            <element signature="e#5877#5878#0" expanded="true" />
-            <element signature="e#5933#6166#0" expanded="true" />
-            <element signature="e#6165#6166#0" expanded="true" />
-            <element signature="e#6308#6518#0" expanded="true" />
-            <element signature="e#6517#6518#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="838">
+          <caret line="144" column="9" lean-forward="false" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="799">
+          <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4338#4339#0" expanded="true" />
-            <element signature="e#4369#4370#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

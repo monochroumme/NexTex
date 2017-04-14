@@ -81,6 +81,8 @@ public class Client {
             try {
                 newSocket = new Socket();
                 InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, port);
+                if(isa.isUnresolved())
+                    continue;
                 newSocket.connect(isa, 25);
                 servers.add(newSocket.getInetAddress().getHostAddress());
             } catch (Exception e) {}
@@ -93,7 +95,8 @@ public class Client {
 
     void disconnect() {
         if(connected) {
-            Main.selfClient.output.println("LOGOUT");
+            if(!socket.isClosed() && socket.isConnected())
+                Main.selfClient.output.println("LOGOUT");
             listener.listen = false;
             try {
                 if (input != null) input.close();
@@ -136,6 +139,7 @@ public class Client {
                             Main.graphics.log(msg);
                         } else {
                             disconnect();
+                            break;
                         }
                     }
                 } catch (Exception e){

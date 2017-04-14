@@ -51,8 +51,12 @@ public class ChatCommands {
 
                 if(command[1].equals("start")){
                     if(command.length == 2){
-                        Main.server = new Server(Main.DEFAULT_PORT, Main.selfClient.getNickname());
-                        if(Main.server.keepGoing) {
+                        if(Main.server == null)
+                            Main.server = new Server(Main.DEFAULT_PORT, Main.selfClient.getNickname());
+                        else{
+                            Main.server.start();
+                        }
+                        if(Main.server.working) {
                             Main.graphics.log("<html><font face='arial' color='yellow'>Сервер с IP <font face='arial' color='white'>" + InetAddress.getLocalHost().getHostAddress() + "</font> открыт</font></html>");
                             Main.selfClient.connect(InetAddress.getLocalHost().getHostAddress());
                             Main.ownServer = true;

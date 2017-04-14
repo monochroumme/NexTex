@@ -7,13 +7,13 @@ public class Server{
     private static int uniqueID;
     private ArrayList<ClientThread> clientsTs;
     private int port;
-    boolean keepGoing;
+    boolean working;
     private String name;
 
     public Server(int port, String name){
         this.port = port;
         setName(name);
-        keepGoing = true;
+        working = true;
         clientsTs = new ArrayList<>();
         start();
     }
@@ -22,13 +22,15 @@ public class Server{
         this.name = name;
     }
 
-    private void start(){
+    void start(){
         Thread ServerThread = new Thread(() -> {
             ServerSocket serverSocket = null;
             try{
                 serverSocket = new ServerSocket(port);
-                    while (keepGoing) {
+                    while (working) {
                         Socket socket = serverSocket.accept();
+                        if(!working)
+                            break;
                         clientsTs.add(new ClientThread(socket));
                     }
             } catch (Exception e) {
@@ -61,7 +63,7 @@ public class Server{
         } catch (Exception e){
             e.printStackTrace();
         }
-        keepGoing = false;
+        working = false;
         uniqueID = 0;
         name = "";
         clientsTs.clear();
@@ -74,7 +76,7 @@ public class Server{
         }
     }
 
-    private void remove(int id) {
+    private synchronized void remove(int id) {
         try {
             clientsTs.get(id).listen = false;
             clientsTs.remove(id);
@@ -112,6 +114,11 @@ public class Server{
         ClientThread(Socket socket){
             id = uniqueID++;
             this.socket = socket;
+            setName("ClientThread-" + id);
+            start();
+        }
+
+        public void run(){
             try{
                 output = new PrintWriter(socket.getOutputStream(), true);
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -119,21 +126,20 @@ public class Server{
             } catch (Exception e){
                 System.out.println("Some problem with ClientThread");
             }
-            setName("ClientThread-" + id);
-            start();
-        }
 
-        public void run(){
             while (listen){
-                try{
-                    msg = input.readLine();
-                    if(msg != null && !msg.equals("") && !msg.equals("\n") && !msg.equals("\r")){
+                if(working) {
+                    try {
+                        msg = input.readLine();
                         handleMessage(msg, id);
+                    } catch (Exception e) {
+
                     }
-                } catch (Exception e) {
+                }
+                else {
+                    listen = false;
                     remove(id);
                     close();
-                    break;
                 }
             }
         }
