@@ -9,6 +9,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -144,8 +148,13 @@ public class Graphics extends JFrame {
         // Catch on exit
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) { // maybe problem in this
-                Main.selfClient.disconnect();
+            public void windowClosing(WindowEvent e) {
+                if(Main.server != null && Main.ownServer) {
+                    Main.server.stop();
+                }
+                else {
+                    Main.selfClient.disconnect();
+                }
                 super.windowClosing(e);
             }
         });

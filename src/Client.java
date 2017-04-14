@@ -9,20 +9,15 @@ import java.util.Random;
  */
 public class Client {
     private String nickname;
-    private int port;
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
     private boolean connected = false;
     private ServerListener listener;
 
-    Client(int portToListen) {
-        this.port = portToListen;
-    }
-
     void connect(String serverIP) {
         try {
-            socket = new Socket(serverIP, port);
+            socket = new Socket(serverIP, Main.DEFAULT_PORT);
             connected = true;
         } catch (Exception e) {
             System.out.println("Error connecting to server " + serverIP);
@@ -80,7 +75,7 @@ public class Client {
                 break;
             try {
                 newSocket = new Socket();
-                InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, port);
+                InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, Main.DEFAULT_PORT);
                 if(isa.isUnresolved())
                     continue;
                 newSocket.connect(isa, 25);
@@ -95,8 +90,9 @@ public class Client {
 
     void disconnect() {
         if(connected) {
-            if(!socket.isClosed() && socket.isConnected())
+            try {
                 Main.selfClient.output.println("LOGOUT");
+            } catch (Exception e) {e.printStackTrace();}
             listener.listen = false;
             try {
                 if (input != null) input.close();
@@ -130,7 +126,6 @@ public class Client {
         String msg;
         boolean listen = true;
         public void run(){
-            setName("ServerListener-" + nickname.substring(37, nickname.indexOf("</font>")));
             while(listen){
                 try {
                     msg = input.readLine();

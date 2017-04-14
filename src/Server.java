@@ -5,170 +5,136 @@ import java.util.ArrayList;
 
 public class Server{
     private static int uniqueID;
-    private ArrayList<ClientThread> clientsTs;
-    private int port;
+    private ArrayList<ClientListener> clients;
     boolean working;
-    private String name;
+    String serverName;
+    ServerSocket serverSocket;
 
-    public Server(int port, String name){
-        this.port = port;
-        setName(name);
+    Server(String serverName){
+        clients = new ArrayList<>();
+        this.serverName = serverName;
         working = true;
-        clientsTs = new ArrayList<>();
+        uniqueID = 0;
         start();
     }
 
-    private void setName(String name){
-        this.name = name;
-    }
-
     void start(){
-        Thread ServerThread = new Thread(() -> {
-            ServerSocket serverSocket = null;
-            try{
-                serverSocket = new ServerSocket(port);
-                    while (working) {
-                        Socket socket = serverSocket.accept();
-                        if(!working)
-                            break;
-                        clientsTs.add(new ClientThread(socket));
-                    }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                stop();
-                try {
-                    if(serverSocket != null)
-                    serverSocket.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        ServerThread.setName("Server");
-        ServerThread.start();
-    }
-
-    void stop(){
-        broadcast("<html><font face='arial' color='red'>Сервер выключен.</font></html>");
-        for (ClientThread ct : clientsTs) {
+        System.out.println("Starting server");
+        new Thread(() -> {
             try {
-                ct.writeMsg("STOP");
-            } catch (Exception e) {
-                System.out.println("Some problem with stopping server");
+                serverSocket = new ServerSocket(Main.DEFAULT_PORT);
+                while (working){
+                    Socket client = serverSocket.accept();
+
+                    if(!working)
+                        break;
+
+                    clients.add(new ClientListener(client));
+                }
+                stop();
+            } catch (IOException e) {}
+            finally {
+                stop();
             }
-        }
-        try {
-            new Socket("localhost", Main.DEFAULT_PORT);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        working = false;
-        uniqueID = 0;
-        name = "";
-        clientsTs.clear();
+        }).start();
     }
 
-    private synchronized void broadcast(String message){
-        for (ClientThread ct : clientsTs) {
-            if(ct.listen)
-                ct.writeMsg(message);
-        }
-    }
-
-    private synchronized void remove(int id) {
-        try {
-            clientsTs.get(id).listen = false;
-            clientsTs.remove(id);
-        } catch (Exception e){
-            System.out.println("No client like this(remove)");
-        }
-    }
-
-    private void handleMessage(String msg, int id){
+    void handleMsg(String msg, int id){
         String[] message = msg.split("/::/");
         switch (message[0]){
             case "LOGIN":
                 broadcast("<html><font face='arial' color='yellow'>" + message[1] + " подключился на сервер.</font></html>");
-                clientsTs.get(id).username = message[1];
+                clients.get(id).name = message[1];
                 break;
             case "MESSAGE":
                 broadcast(message[1]);
                 break;
             case "LOGOUT":
-                remove(id);
-                broadcast("<html><font face='arial' color='yellow'>" + clientsTs.get(id).username + " отключился</font></html>");
+                clients.get(id).close();
+                broadcast("<html><font face='arial' color='yellow'>" + clients.get(id).name + " отключился</font></html>");
                 break;
         }
     }
 
-    class ClientThread extends Thread {
+    synchronized void broadcast(String msg){
+        for (ClientListener ct : clients) {
+            try {
+                if (ct.listen)
+                    ct.output.println(msg);
+            } catch (Exception e){
+                ct.close();
+            }
+        }
+    }
+
+     synchronized void stop(){
+        broadcast("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
+        working = false;
+        try{
+        for (ClientListener cl : clients) {
+            cl.close();
+        }} catch (Exception e) { e.printStackTrace();}
+        if(serverSocket != null) {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try{
+            clients.clear();
+        } catch (Exception e) {}
+    }
+
+    class ClientListener extends Thread {
+        int id;
+        String name;
         Socket socket;
         BufferedReader input;
         PrintWriter output;
-        int id;
-        String msg;
-        String username;
-        boolean listen = true;
+        boolean listen;
 
-        ClientThread(Socket socket){
+        ClientListener(Socket socket){
             id = uniqueID++;
             this.socket = socket;
-            setName("ClientThread-" + id);
+            listen = true;
             start();
         }
 
         public void run(){
-            try{
-                output = new PrintWriter(socket.getOutputStream(), true);
+            try {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                output.println("<html><font face='arial' color='green'>Вы подключены к серверу " + name + "</font></html>");
+                output = new PrintWriter(socket.getOutputStream(), true);
+                output.println("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
+                listen();
             } catch (Exception e){
-                System.out.println("Some problem with ClientThread");
-            }
-
-            while (listen){
-                if(working) {
-                    try {
-                        msg = input.readLine();
-                        handleMessage(msg, id);
-                    } catch (Exception e) {
-
-                    }
-                }
-                else {
-                    listen = false;
-                    remove(id);
-                    close();
-                }
+                e.printStackTrace();
             }
         }
 
-        private void close(){
+        void listen(){
+            String msg;
             try {
-                if(output != null) output.close();
-            }
-            catch(Exception e) {}
-            try {
-                if(input != null) input.close();
-            }
-            catch(Exception e) {}
-            try {
-                if(socket != null && !socket.isClosed()) socket.close();
-            }
-            catch (Exception e) {}
+                while (listen) {
+                    msg = input.readLine();
+                    if (msg == null)
+                        return;
+                    handleMsg(msg, id);
+                }
+            } catch (IOException e) {}
             finally {
-                broadcast("<html><font face='arial' color='yellow'>" + username + " отключился.</font></html>");
+                close();
             }
         }
 
-        void writeMsg(String msg){
-            try{
-                output.println(msg);
-            } catch (Exception e){
-                close();
-                System.out.println("Error writing to " + id);
-            }
+         void close(){
+            listen = false;
+            try {
+                output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
+                try {
+                    if (socket != null) socket.close();
+                } catch (Exception e) {}
+            } catch (Exception e){}
         }
     }
 }

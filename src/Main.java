@@ -26,6 +26,6 @@ public class Main {
 
     void start() {
         graphics = new Graphics();
-        selfClient = new Client(DEFAULT_PORT);
+        selfClient = new Client();
     }
 }

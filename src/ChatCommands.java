@@ -47,15 +47,12 @@ public class ChatCommands {
                 if(Main.ownServer) { // All next commands need to shut down own server for starting a new one, connecting to new one or disconnecting.
                     Main.server.stop();
                     Main.ownServer = false;
+                    Main.server = null;
                 }
 
                 if(command[1].equals("start")){
                     if(command.length == 2){
-                        if(Main.server == null)
-                            Main.server = new Server(Main.DEFAULT_PORT, Main.selfClient.getNickname());
-                        else{
-                            Main.server.start();
-                        }
+                        Main.server = new Server(Main.selfClient.getNickname());
                         if(Main.server.working) {
                             Main.graphics.log("<html><font face='arial' color='yellow'>Сервер с IP <font face='arial' color='white'>" + InetAddress.getLocalHost().getHostAddress() + "</font> открыт</font></html>");
                             Main.selfClient.connect(InetAddress.getLocalHost().getHostAddress());
@@ -89,13 +86,13 @@ public class ChatCommands {
                     return;
                 }
                 else if (command[1].equals("disconnect") && command.length == 2){
-                    Main.selfClient.disconnect();
                     return;
                 }
 
                 Main.graphics.log("<html><font face='arial' color='red'>Неизветсная команда</font></html>");
                 return;
             } catch (Exception e){
+                e.printStackTrace();
                 Main.graphics.log("<html><font face='arial' color='red'>Неизветсная команда</font></html>");
                 return;
             }
