@@ -149,7 +149,7 @@ public class Graphics extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if(Main.server != null && Main.ownServer) {
+                if(Main.server != null && Main.ownServer && Main.server.working) {
                     Main.server.stop();
                 }
                 else {
@@ -185,7 +185,7 @@ public class Graphics extends JFrame {
 
     private void sendButtonPressed(){
         if(waitingForNickname){
-            if(!isEmpty(msgInputTF.getText()) && !contains(msgInputTF.getText(), new String[] {"<", ">", ":", ";"})) {
+            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.contains(msgInputTF.getText(), new String[] {"<", ">", ":", ";"})) {
                 Main.selfClient.setNickname(msgInputTF.getText(), true);
                 waitingForNickname = false;
                 log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");
@@ -195,7 +195,7 @@ public class Graphics extends JFrame {
                 log("<html><font face='arial' color='red'>Некорректный ник, введите заново:</font></html>");
             }
         }
-        else if (!isEmpty(msgInputTF.getText()) && !ChatCommands.isCommand(msgInputTF.getText())) {
+        else if (!Utils.isEmpty(msgInputTF.getText()) && !ChatCommands.isCommand(msgInputTF.getText())) {
             Main.selfClient.sendMessage(msgInputTF.getText());
         }
         msgInputTF.setText(""); // Clear input line
@@ -207,27 +207,6 @@ public class Graphics extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean isEmpty(String string) {
-        if (string.isEmpty())
-            return true;
-        else {
-            for (int i = 0; i < string.length(); i++) {
-                if(string.charAt(i) != ' ')
-                    return false;
-            }
-            msgInputTF.setText("");
-            return true;
-        }
-    }
-
-    private boolean contains(String container, String[] chars){
-        for(String c : chars){
-            if(container.contains(c))
-                return true;
-        }
-        return false;
     }
 
     void clearChat() {

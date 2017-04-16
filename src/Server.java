@@ -1,21 +1,27 @@
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server{
     private static int uniqueID;
-    private ArrayList<ClientListener> clients;
+    private ClientListener[] clients;
     boolean working;
     String serverName;
     ServerSocket serverSocket;
 
     Server(String serverName){
-        clients = new ArrayList<>();
+        clients = new ClientListener[50];
+        reset(serverName);
+        start();
+    }
+
+    void reset(String serverName){
         this.serverName = serverName;
         working = true;
         uniqueID = 0;
-        start();
+        clearListOfClients();
     }
 
     void start(){
@@ -29,10 +35,12 @@ public class Server{
                     if(!working)
                         break;
 
-                    clients.add(new ClientListener(client));
+                    clients[uniqueID] = new ClientListener(client);
                 }
                 stop();
-            } catch (IOException e) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             finally {
                 stop();
             }
@@ -44,36 +52,40 @@ public class Server{
         switch (message[0]){
             case "LOGIN":
                 broadcast("<html><font face='arial' color='yellow'>" + message[1] + " подключился на сервер.</font></html>");
-                clients.get(id).name = message[1];
+                clients[id].name = message[1];
                 break;
             case "MESSAGE":
                 broadcast(message[1]);
                 break;
             case "LOGOUT":
-                clients.get(id).close();
-                broadcast("<html><font face='arial' color='yellow'>" + clients.get(id).name + " отключился</font></html>");
+                clients[id].listen = false;
+                clients[id].close();
                 break;
         }
     }
 
     synchronized void broadcast(String msg){
-        for (ClientListener ct : clients) {
-            try {
-                if (ct.listen)
-                    ct.output.println(msg);
-            } catch (Exception e){
-                ct.close();
+        for (ClientListener client : clients) {
+            if (client != null) {
+                try {
+                    if (client.listen)
+                        client.output.println(msg);
+                } catch (Exception e) {
+                    client.close();
+                }
             }
         }
     }
 
-     synchronized void stop(){
+    void stop(){
         broadcast("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
         working = false;
-        try{
         for (ClientListener cl : clients) {
-            cl.close();
-        }} catch (Exception e) { e.printStackTrace();}
+            if(cl != null && cl.name != null) {
+                cl.listen = false;
+                cl.close();
+            }
+        }
         if(serverSocket != null) {
             try {
                 serverSocket.close();
@@ -81,9 +93,12 @@ public class Server{
                 e.printStackTrace();
             }
         }
-        try{
-            clients.clear();
-        } catch (Exception e) {}
+    }
+
+    void clearListOfClients(){
+        for (int i = 0; i < clients.length; i++) {
+            clients[i] = null;
+        }
     }
 
     class ClientListener extends Thread {
@@ -121,20 +136,28 @@ public class Server{
                         return;
                     handleMsg(msg, id);
                 }
-            } catch (IOException e) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             finally {
                 close();
             }
         }
 
          void close(){
-            listen = false;
-            try {
-                output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
+            if(!listen && socket.isConnected() && !socket.isClosed()) {
                 try {
-                    if (socket != null) socket.close();
-                } catch (Exception e) {}
-            } catch (Exception e){}
+                    output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
+                    try {
+                        if (socket != null) socket.close();
+                    } catch (Exception e) {
+                    }
+                } catch (Exception e) {
+                }
+
+                broadcast("<html><font face='arial' color='yellow'>" + name + " вышел из сервера.</font></html>");
+                clients[id] = null;
+            }
         }
     }
 }

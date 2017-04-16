@@ -104,7 +104,7 @@ public class Client {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             connected = false;
-            Main.graphics.log("<html><font face='arial' color='red'>Вы отключены от сервера.</font></html>");
+            //Main.graphics.log("<html><font face='arial' color='red'>Вы отключены от сервера.</font></html>");
         }
     }
 
@@ -129,13 +129,13 @@ public class Client {
             while(listen){
                 try {
                     msg = input.readLine();
-                    if(msg != null) {
-                        if (!msg.equals("STOP")) {
-                            Main.graphics.log(msg);
-                        } else {
-                            disconnect();
-                            break;
-                        }
+                    if(msg == null)
+                        break;
+                    if (msg.equals("STOP")) {
+                        disconnect();
+                    }
+                    else {
+                        Main.graphics.log(msg);
                     }
                 } catch (Exception e){
                     break;

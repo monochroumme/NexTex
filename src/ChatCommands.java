@@ -16,11 +16,11 @@ public class ChatCommands {
     private static void handleCommand(String msg) {
         String[] command = msg.substring(1).split("\\s+");
 
-        if (containsOnly(command, "clear")) {
+        if (Utils.containsOnly(command, "clear")) {
             Main.graphics.clearChat();
             return;
         } else if(command[0].equals("server")) {
-            if(containsOnly(command, "server")){
+            if(Utils.containsOnly(command, "server")){
                 String help = "<html></html>"; // TODO
                 Main.graphics.log(help);
                 return;
@@ -52,7 +52,12 @@ public class ChatCommands {
 
                 if(command[1].equals("start")){
                     if(command.length == 2){
-                        Main.server = new Server(Main.selfClient.getNickname());
+                        if(Main.server == null)
+                            Main.server = new Server(Main.selfClient.getNickname());
+                        else {
+                            Main.server.reset(Main.selfClient.getNickname());
+                        }
+
                         if(Main.server.working) {
                             Main.graphics.log("<html><font face='arial' color='yellow'>Сервер с IP <font face='arial' color='white'>" + InetAddress.getLocalHost().getHostAddress() + "</font> открыт</font></html>");
                             Main.selfClient.connect(InetAddress.getLocalHost().getHostAddress());
@@ -86,6 +91,7 @@ public class ChatCommands {
                     return;
                 }
                 else if (command[1].equals("disconnect") && command.length == 2){
+                    Main.selfClient.disconnect();
                     return;
                 }
 
@@ -98,14 +104,6 @@ public class ChatCommands {
             }
         }
         Main.graphics.log("<html><font face='arial' color='red'>Неизветсная команда</font></html>");
-    }
-
-    private static boolean containsOnly(String[] container, String only) {
-        if(container.length > 1)
-            return false;
-        else if(container[0].equals(only))
-            return true;
-        return false;
     }
 
     private static String showServers(ArrayList<String> servers){
