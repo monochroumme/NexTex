@@ -1,15 +1,13 @@
 import java.io.*;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class Server{
     private static int uniqueID;
     private ClientListener[] clients;
     boolean working;
-    String serverName;
-    ServerSocket serverSocket;
+    private String serverName;
+    private ServerSocket serverSocket;
 
     Server(String serverName){
         clients = new ClientListener[50];
@@ -24,7 +22,7 @@ public class Server{
         clearListOfClients();
     }
 
-    void start(){
+    private void start(){
         System.out.println("Starting server");
         new Thread(() -> {
             try {
@@ -47,11 +45,17 @@ public class Server{
         }).start();
     }
 
-    void handleMsg(String msg, int id){
+    private void handleMsg(String msg, int id){
         String[] message = msg.split("/::/");
         switch (message[0]){
             case "LOGIN":
                 broadcast("<html><font face='arial' color='yellow'>" + message[1] + " подключился на сервер.</font></html>");
+                if(message[1].equals(Main.selfClient.getNickname())){
+                    String color = message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>"));
+                    String name = message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font"));
+                    System.out.println(color);
+                    message[1] = "<font face='Arial Bold' color='" + color + "' size=4>" + name + "</font></html>";
+                }
                 clients[id].name = message[1];
                 break;
             case "MESSAGE":
@@ -61,10 +65,15 @@ public class Server{
                 clients[id].listen = false;
                 clients[id].close();
                 break;
+            case "NEWNICK":
+                broadcast("<html><font face='arial' color='yellow'>" + clients[id].name + " изменил свой ник на " + message[1] + "</font></html>");
+                clients[id].name = message[1];
+                //updateClientsList();
+                break;
         }
     }
 
-    synchronized void broadcast(String msg){
+    private synchronized void broadcast(String msg){
         for (ClientListener client : clients) {
             if (client != null) {
                 try {
@@ -78,10 +87,10 @@ public class Server{
     }
 
     void stop(){
-        broadcast("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
         working = false;
         for (ClientListener cl : clients) {
             if(cl != null && cl.name != null) {
+                cl.output.println("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
                 cl.listen = false;
                 cl.close();
             }
@@ -95,10 +104,24 @@ public class Server{
         }
     }
 
-    void clearListOfClients(){
+    private void clearListOfClients(){
         for (int i = 0; i < clients.length; i++) {
             clients[i] = null;
         }
+    }
+
+    void changeServerName(String name){
+        serverName = name;
+        broadcast("<html><font face='arial' color='yellow'>Название сервера изменено на " + serverName + "</font></html>");
+    }
+
+    private void updateClientsList(){
+        String clientsNames = "LIST";
+        for (int i = 0; i < clients.length; i ++) {
+            if(clients[i] != null)
+                clientsNames = clientsNames.concat(":" + clients[i].name);
+        }
+        broadcast(clientsNames);
     }
 
     class ClientListener extends Thread {
@@ -122,6 +145,7 @@ public class Server{
                 output = new PrintWriter(socket.getOutputStream(), true);
                 output.println("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
                 listen();
+                //updateClientsList();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -150,13 +174,15 @@ public class Server{
                     output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
                     try {
                         if (socket != null) socket.close();
-                    } catch (Exception e) {
-                    }
-                } catch (Exception e) {
-                }
+                    } catch (Exception e) {}
+                } catch (Exception e) {}
 
                 broadcast("<html><font face='arial' color='yellow'>" + name + " вышел из сервера.</font></html>");
                 clients[id] = null;
+
+                if(working){
+                    //updateClientsList();
+                }
             }
         }
     }

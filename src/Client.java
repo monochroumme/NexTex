@@ -11,8 +11,8 @@ public class Client {
     private String nickname;
     private Socket socket;
     private BufferedReader input;
-    private PrintWriter output;
-    private boolean connected = false;
+    PrintWriter output;
+    boolean connected = false;
     private ServerListener listener;
 
     void connect(String serverIP) {
@@ -104,18 +104,12 @@ public class Client {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             connected = false;
-            //Main.graphics.log("<html><font face='arial' color='red'>Вы отключены от сервера.</font></html>");
         }
     }
 
-    void setNickname(String name, boolean randomColor) {
-        if (randomColor) {
-            String[] colors = {"#33cc33", "#33cccc", "#cc3333", "#cc33a6", "#804000", "yellow", "#cc8033", "#66b3ff", "#6666ff", "#8c66ff", "#ff66ff", "#66ff66", "#66ffb3", "#ff8000", "#00ccff", "#6633ff"};
-            String color = colors[new Random().nextInt(colors.length)];
-            nickname = "<font face='georgia' color='" + color + "'>" + name + "</font>";
-        } else {
-            nickname = name;
-        }
+    void setNickname(String name) {
+        String color = Utils.getRandomRGBColorString();
+        nickname = "<font face='WildWest' color='" + color + "'>" + name + "</font>";
     }
 
     String getNickname() {
@@ -133,6 +127,9 @@ public class Client {
                         break;
                     if (msg.equals("STOP")) {
                         disconnect();
+                    }
+                    else if(msg.startsWith("LIST:")){
+                        Main.graphics.changeList(msg);
                     }
                     else {
                         Main.graphics.log(msg);

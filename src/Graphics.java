@@ -9,10 +9,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -29,8 +25,10 @@ public class Graphics extends JFrame {
     private JEditorPane msgOutputEP;
     private HTMLDocument doc;
     private HTMLEditorKit edit;
-    public JTextField msgInputTF;
-    public JList listOfUsers;
+    JTextField msgInputTF;
+    private JList<String> listOfUsers;
+    DefaultListModel<String> listOfUsersModel;
+
 
     private Color chatColor = new Color(30, 30, 30);
     private Color secondaryColor = new Color(65, 65, 65);
@@ -112,12 +110,18 @@ public class Graphics extends JFrame {
         sendBut.setFocusPainted(false);
         sendBut.setToolTipText("Отправить сообщение");
 
-        listOfUsers = new JList();
+        listOfUsersModel = new DefaultListModel<>();
+        listOfUsers = new JList<>(listOfUsersModel);
+        listOfUsers.setSelectionModel(new NoSelectionModel());
         listOfUsers.setBackground(chatColor);
         listOfUsers.setForeground(Color.white);
         listOfUsers.setToolTipText("Список подключенных пользователей");
         listOfUsers.setSelectionBackground(selectionColor);
         listOfUsers.setSelectionForeground(Color.white);
+        listOfUsers.setDragEnabled(false);
+        listOfUsers.setLayoutOrientation(JList.VERTICAL);
+        listOfUsers.setAutoscrolls(true);
+        listOfUsers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane listOfUsersSP = new JScrollPane(listOfUsers);
         listOfUsersSP.setPreferredSize(new Dimension(190, 403));
         listOfUsersSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -185,8 +189,8 @@ public class Graphics extends JFrame {
 
     private void sendButtonPressed(){
         if(waitingForNickname){
-            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.contains(msgInputTF.getText(), new String[] {"<", ">", ":", ";"})) {
-                Main.selfClient.setNickname(msgInputTF.getText(), true);
+            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() < 20) {
+                Main.selfClient.setNickname(msgInputTF.getText());
                 waitingForNickname = false;
                 log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");
                 Main.selfClient.automaticallyConnect();
@@ -206,6 +210,18 @@ public class Graphics extends JFrame {
             edit.insertHTML(doc, doc.getLength(), message, 0, 0, null);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    void changeList(String data){
+        String[] elements = data.split(":");
+        for (int i = 1; i < elements.length; i++) { // from 1 bo(because of) the first is LIST. This will add whatever list doesn't contain
+            if(!listOfUsersModel.contains(elements[i])){
+                listOfUsersModel.addElement(elements[i]);
+            }
+            if(Utils.containsOnly(elements, listOfUsers.getModel().getElementAt(i))){ // This will remove whatever list contains but elements doesn't
+                listOfUsersModel.remove(i);
+            }
         }
     }
 

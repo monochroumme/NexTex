@@ -27,5 +27,7 @@ public class Main {
     void start() {
         graphics = new Graphics();
         selfClient = new Client();
+
+        // debugging
     }
 }
