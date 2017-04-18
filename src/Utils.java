@@ -35,6 +35,14 @@ public class Utils {
         return false;
     }
 
+    static boolean contains(String[] container, String only){
+        for (int i = 0; i < container.length; i++) {
+            if(container[i].equalsIgnoreCase(only))
+                return true;
+        }
+        return false;
+    }
+
     static String getRandomRGBColorString(){
         Random random = new Random();
         Color color = new Color(random.nextInt(205) + 50,random.nextInt(205) + 50,random.nextInt(205) + 50);

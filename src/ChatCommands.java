@@ -20,7 +20,11 @@ class ChatCommands {
             if (Utils.containsOnly(command, "clear")) {
                 Main.graphics.clearChat();
                 return;
-            } else if (command[0].equalsIgnoreCase("set")) {
+            } else if(Utils.containsOnly(command, "sendip")){
+                Main.selfClient.sendMessage(InetAddress.getLocalHost().getHostAddress());
+                return;
+            }
+            else if (command[0].equalsIgnoreCase("set")) {
                 if (command[1].equalsIgnoreCase("nickname")) {
                     try {
                         if(command.length == 3){

@@ -104,6 +104,7 @@ public class Client {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             connected = false;
+            Main.graphics.clearList();
         }
     }
 
@@ -135,6 +136,7 @@ public class Client {
                         Main.graphics.log(msg);
                     }
                 } catch (Exception e){
+                    e.printStackTrace();
                     break;
                 }
             }

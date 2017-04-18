@@ -53,10 +53,10 @@ public class Server{
                 if(message[1].equals(Main.selfClient.getNickname())){
                     String color = message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>"));
                     String name = message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font"));
-                    System.out.println(color);
-                    message[1] = "<font face='Arial Bold' color='" + color + "' size=4>" + name + "</font></html>";
+                    message[1] = "<font face='Verdana Bold' color='" + color + "' size=4>" + name + "</font>";
                 }
                 clients[id].name = message[1];
+                updateClientsList();
                 break;
             case "MESSAGE":
                 broadcast(message[1]);
@@ -68,20 +68,20 @@ public class Server{
             case "NEWNICK":
                 broadcast("<html><font face='arial' color='yellow'>" + clients[id].name + " изменил свой ник на " + message[1] + "</font></html>");
                 clients[id].name = message[1];
-                //updateClientsList();
+                updateClientsList();
                 break;
         }
     }
 
     private synchronized void broadcast(String msg){
         for (ClientListener client : clients) {
-            if (client != null) {
-                try {
-                    if (client.listen)
-                        client.output.println(msg);
-                } catch (Exception e) {
-                    client.close();
-                }
+            if (client == null)
+                break;
+            try {
+                if (client.listen)
+                    client.output.println(msg);
+            } catch (Exception e) {
+                client.close();
             }
         }
     }
@@ -118,7 +118,9 @@ public class Server{
     private void updateClientsList(){
         String clientsNames = "LIST";
         for (int i = 0; i < clients.length; i ++) {
-            if(clients[i] != null)
+            if(clients[i] == null)
+                break;
+            if(clients[i].name != null)
                 clientsNames = clientsNames.concat(":" + clients[i].name);
         }
         broadcast(clientsNames);
@@ -145,7 +147,6 @@ public class Server{
                 output = new PrintWriter(socket.getOutputStream(), true);
                 output.println("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
                 listen();
-                //updateClientsList();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -179,9 +180,10 @@ public class Server{
 
                 broadcast("<html><font face='arial' color='yellow'>" + name + " вышел из сервера.</font></html>");
                 clients[id] = null;
+                uniqueID--;
 
                 if(working){
-                    //updateClientsList();
+                    updateClientsList();
                 }
             }
         }

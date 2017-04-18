@@ -9,6 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -48,7 +50,7 @@ public class Graphics extends JFrame {
         setTitle(TITLE);
         setSize(FRM_WIDTH, FRM_HEIGHT);
         setMinimumSize(new Dimension(FRM_WIDTH, FRM_HEIGHT));
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // TODO отправлять серверу инфу о выходе при закрытии проги
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         UIManager.put("ToolTip.background", new ColorUIResource(secondaryColor));
         UIManager.put("ToolTip.foreground", new ColorUIResource(Color.white));
@@ -189,7 +191,7 @@ public class Graphics extends JFrame {
 
     private void sendButtonPressed(){
         if(waitingForNickname){
-            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() < 20) {
+            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 20) {
                 Main.selfClient.setNickname(msgInputTF.getText());
                 waitingForNickname = false;
                 log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");
@@ -214,15 +216,29 @@ public class Graphics extends JFrame {
     }
 
     void changeList(String data){
-        String[] elements = data.split(":");
-        for (int i = 1; i < elements.length; i++) { // from 1 bo(because of) the first is LIST. This will add whatever list doesn't contain
-            if(!listOfUsersModel.contains(elements[i])){
-                listOfUsersModel.addElement(elements[i]);
-            }
-            if(Utils.containsOnly(elements, listOfUsers.getModel().getElementAt(i))){ // This will remove whatever list contains but elements doesn't
-                listOfUsersModel.remove(i);
-            }
+        if(listOfUsersModel.isEmpty()) {
+            listOfUsersModel.addElement("Будет работать");
+            listOfUsersModel.addElement("на следующем обновлении.");
         }
+
+//        String[] elements = data.split(":");
+//        int n = 1;
+//        for (int i = 0; i < elements.length - 1; i++) {
+//            if(i < listOfUsersModel.size() && !listOfUsersModel.contains(elements[n])){
+//                listOfUsersModel.remove(i);// problem because of this, there is some options that i've figured out: create a list of indexes to remove, and after this for remove them with another for.
+//                listOfUsersModel.addElement("<html>" + elements[n] + "</html>"); // 2 option: somehow use iterator
+//                i--;
+//                continue;
+//            } else if (i >= listOfUsersModel.size()){
+//                listOfUsersModel.addElement("<html>" + elements[n] + "</html>");
+//            }
+//
+//            n++;
+//        }
+    }
+
+    void clearList(){
+        listOfUsersModel.clear();
     }
 
     void clearChat() {
