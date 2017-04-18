@@ -172,6 +172,7 @@ public class Server{
          void close(){
             if(!listen && socket.isConnected() && !socket.isClosed()) {
                 try {
+                    output.println("LIST:");
                     output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
                     try {
                         if (socket != null) socket.close();

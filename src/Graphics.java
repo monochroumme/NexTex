@@ -216,25 +216,18 @@ public class Graphics extends JFrame {
     }
 
     void changeList(String data){
-        if(listOfUsersModel.isEmpty()) {
-            listOfUsersModel.addElement("Будет работать");
-            listOfUsersModel.addElement("на следующем обновлении.");
+        String[] elements = data.split(":");
+        for (int i = 0; i < elements.length - 1; i++) {
+            if(i < listOfUsersModel.size() && !listOfUsersModel.getElementAt(i).equalsIgnoreCase("<html>" + elements[i+1] + "</html>")){
+                listOfUsersModel.removeElementAt(i);
+                listOfUsersModel.addElement("<html>" + elements[i+1] + "</html>");
+                i--;
+            } else if (i >= listOfUsersModel.size())
+                listOfUsersModel.addElement("<html>" + elements[i+1] + "</html>");
         }
 
-//        String[] elements = data.split(":");
-//        int n = 1;
-//        for (int i = 0; i < elements.length - 1; i++) {
-//            if(i < listOfUsersModel.size() && !listOfUsersModel.contains(elements[n])){
-//                listOfUsersModel.remove(i);// problem because of this, there is some options that i've figured out: create a list of indexes to remove, and after this for remove them with another for.
-//                listOfUsersModel.addElement("<html>" + elements[n] + "</html>"); // 2 option: somehow use iterator
-//                i--;
-//                continue;
-//            } else if (i >= listOfUsersModel.size()){
-//                listOfUsersModel.addElement("<html>" + elements[n] + "</html>");
-//            }
-//
-//            n++;
-//        }
+        if(elements.length == 1)
+            listOfUsersModel.removeAllElements();
     }
 
     void clearList(){
