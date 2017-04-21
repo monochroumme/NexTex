@@ -215,19 +215,14 @@ public class Graphics extends JFrame {
         }
     }
 
-    void changeList(String data){
+    void changeList(String data) {
         String[] elements = data.split(":");
-        for (int i = 0; i < elements.length - 1; i++) {
-            if(i < listOfUsersModel.size() && !listOfUsersModel.getElementAt(i).equalsIgnoreCase("<html>" + elements[i+1] + "</html>")){
-                listOfUsersModel.removeElementAt(i);
-                listOfUsersModel.addElement("<html>" + elements[i+1] + "</html>");
-                i--;
-            } else if (i >= listOfUsersModel.size())
-                listOfUsersModel.addElement("<html>" + elements[i+1] + "</html>");
+        listOfUsersModel.removeAllElements();
+        if(elements.length > 1){
+            for (int i = 1; i < elements.length; i++) {
+                listOfUsersModel.addElement(elements[i]);
+            }
         }
-
-        if(elements.length == 1)
-            listOfUsersModel.removeAllElements();
     }
 
     void clearList(){
