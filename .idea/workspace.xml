@@ -7,12 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b026aef-1a70-4961-935d-5c2aacbfe38a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/NexTex_jar/NexTex.jar" afterPath="$PROJECT_DIR$/out/artifacts/NexTex_jar/NexTex.jar" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/NexTex_jar/NexTex.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ChatCommands.java" afterPath="$PROJECT_DIR$/src/ChatCommands.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Client.java" afterPath="$PROJECT_DIR$/src/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Graphics.java" afterPath="$PROJECT_DIR$/src/Graphics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server.java" afterPath="$PROJECT_DIR$/src/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Graphics.java" afterPath="$PROJECT_DIR$/src/ChatGraphics.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,21 +35,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Graphics.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Graphics.java">
+      <file leaf-file-name="ChatGraphics.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ChatGraphics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="287">
+              <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#9673#9816#0" expanded="true" />
+                <element signature="e#9748#9749#0" expanded="false" />
+                <element signature="e#9805#9806#0" expanded="false" />
+                <element signature="e#9815#9816#0" expanded="true" />
+                <element signature="e#9871#10265#0" expanded="true" />
+                <element signature="e#10264#10265#0" expanded="true" />
+                <element signature="e#10407#10617#0" expanded="true" />
+                <element signature="e#10616#10617#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatCommands.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChatCommands.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="75" column="128" lean-forward="false" selection-start-line="75" selection-start-column="128" selection-end-line="75" selection-end-column="128" />
+            <state relative-caret-position="374">
+              <caret line="23" column="172" lean-forward="false" selection-start-line="23" selection-start-column="172" selection-end-line="23" selection-end-column="172" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/src/Client.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2159">
-              <caret line="133" column="144" lean-forward="false" selection-start-line="133" selection-start-column="144" selection-end-line="133" selection-end-column="144" />
+              <caret line="132" column="148" lean-forward="false" selection-start-line="132" selection-start-column="148" selection-end-line="132" selection-end-column="148" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,9 +96,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2397">
               <caret line="144" column="53" lean-forward="false" selection-start-line="144" selection-start-column="53" selection-end-line="144" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,7 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>msgOutputTP</find>
       <find>msgOutputTASP</find>
       <find>&lt;p&gt;</find>
       <find>\t</find>
@@ -135,6 +142,7 @@
       <find>out.</find>
       <find>вы</find>
       <find>вы откл</find>
+      <find>new Color(57,57,57)</find>
     </findStrings>
     <replaceStrings>
       <replace>msgOutputEP</replace>
@@ -148,6 +156,7 @@
       <replace>arial</replace>
       <replace>Main.graphics</replace>
       <replace>working</replace>
+      <replace>secondaryColor</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -176,8 +185,9 @@
         <option value="$PROJECT_DIR$/src/Utils.java" />
         <option value="$PROJECT_DIR$/src/Client.java" />
         <option value="$PROJECT_DIR$/src/Server.java" />
-        <option value="$PROJECT_DIR$/src/ChatCommands.java" />
         <option value="$PROJECT_DIR$/src/Graphics.java" />
+        <option value="$PROJECT_DIR$/src/ChatCommands.java" />
+        <option value="$PROJECT_DIR$/src/ChatGraphics.java" />
       </list>
     </option>
   </component>
@@ -244,6 +254,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -524,15 +535,15 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2708559" sideWeight="0.5042644" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28602383" sideWeight="0.5063966" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28602383" sideWeight="0.49573562" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28602383" sideWeight="0.4936034" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10660981" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1076759" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -543,6 +554,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
@@ -561,8 +573,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/server/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/core/Graphics.java" />
     <entry file="file://$PROJECT_DIR$/src/core/MainHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/client/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/core/ChatCommands.java" />
@@ -652,36 +662,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2397">
           <caret line="144" column="53" lean-forward="false" selection-start-line="144" selection-start-column="53" selection-end-line="144" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2159">
-          <caret line="133" column="144" lean-forward="false" selection-start-line="133" selection-start-column="144" selection-end-line="133" selection-end-column="144" />
+          <caret line="132" column="148" lean-forward="false" selection-start-line="132" selection-start-column="148" selection-end-line="132" selection-end-column="148" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Graphics.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/jre/lib/rt.jar!/javax/swing/plaf/basic/BasicScrollBarUI.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="-2623">
+          <caret line="45" column="11" lean-forward="false" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/javax/swing/plaf/basic/BasicScrollBarUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7769">
+          <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatCommands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="128" lean-forward="false" selection-start-line="75" selection-start-column="128" selection-end-line="75" selection-end-column="128" />
+        <state relative-caret-position="374">
+          <caret line="23" column="172" lean-forward="false" selection-start-line="23" selection-start-column="172" selection-end-line="23" selection-end-column="172" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatGraphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9673#9816#0" expanded="true" />
+            <element signature="e#9748#9749#0" expanded="false" />
+            <element signature="e#9805#9806#0" expanded="false" />
+            <element signature="e#9815#9816#0" expanded="true" />
+            <element signature="e#9871#10265#0" expanded="true" />
+            <element signature="e#10264#10265#0" expanded="true" />
+            <element signature="e#10407#10617#0" expanded="true" />
+            <element signature="e#10616#10617#0" expanded="true" />
           </folding>
         </state>
       </provider>

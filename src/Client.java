@@ -2,7 +2,6 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -22,7 +21,7 @@ public class Client {
             connected = true;
         } catch (Exception e) {
             System.out.println("Error connecting to server " + serverIP);
-            Main.graphics.log("<html><font face='arial' color='red'>Сервера на данном IP нет.</font></html>");
+            Main.chatGraphics.log("<html><font face='arial' color='red'>Сервера на данном IP нет.</font></html>");
             return;
         }
 
@@ -51,7 +50,7 @@ public class Client {
     void sendMessage(String msg) {
         try {
             if(!connected) {
-                Main.graphics.log("<html><font face='arial' color='red'>Сначала подключитесь к серверу. Если вы не знаете как, то напишите <font face='arial' color='green'>/help</font></font></html>");
+                Main.chatGraphics.log("<html><font face='arial' color='red'>Сначала подключитесь к серверу. Если вы не знаете как, то напишите <font face='arial' color='green'>/help</font></font></html>");
             } else output.println("MESSAGE/::/<html>" + nickname + "<font face='verdana' color='white'>: " + msg + "</font></html>");
         } catch (Exception e) {
             System.out.println("Error writing to server");
@@ -68,8 +67,8 @@ public class Client {
 
     ArrayList<String> findServers(int howMany){
         ArrayList<String> servers = new ArrayList<>();
-        Main.graphics.log("<html><font face='arial' color='yellow'>Поиск серверов...</font></html>");
-        Main.graphics.msgInputTF.setEnabled(false);
+        Main.chatGraphics.log("<html><font face='arial' color='yellow'>Поиск серверов...</font></html>");
+        Main.chatGraphics.msgInputTF.setEnabled(false);
         Socket newSocket;
         for (int i = 2; i < 36; i++) {
             if (servers.size() >= howMany)
@@ -84,8 +83,8 @@ public class Client {
             } catch (Exception e) {}
         }
         if (servers.size() == 0)
-            Main.graphics.log("<html><font face='arial' color='red'>Нет доступных серверов</font></html>");
-        Main.graphics.msgInputTF.setEnabled(true);
+            Main.chatGraphics.log("<html><font face='arial' color='red'>Нет доступных серверов</font></html>");
+        Main.chatGraphics.msgInputTF.setEnabled(true);
         return servers;
     }
 
@@ -105,7 +104,7 @@ public class Client {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             connected = false;
-            Main.graphics.clearList();
+            Main.chatGraphics.clearList();
         }
     }
 
@@ -131,13 +130,13 @@ public class Client {
                         disconnect();
                     } else if (msg.startsWith("NAME:")){
                         serverName = msg.substring(msg.indexOf(":") + 1);
-                        Main.graphics.log("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
+                        Main.chatGraphics.log("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
                     }
                     else if(msg.startsWith("LIST:")){
-                        Main.graphics.changeList(msg);
+                        Main.chatGraphics.changeList(msg);
                     }
                     else {
-                        Main.graphics.log(msg);
+                        Main.chatGraphics.log(msg);
                     }
                 } catch (Exception e){
                     e.printStackTrace();

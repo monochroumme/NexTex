@@ -1,16 +1,21 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by nadir on 02.04.2017.
  */
-public class Graphics extends JFrame {
+public class ChatGraphics extends JFrame {
     private final String TITLE = "NexTex";
     private final int FRM_WIDTH = 800;
     private final int FRM_HEIGHT = 490;
@@ -33,7 +38,7 @@ public class Graphics extends JFrame {
 
     private boolean waitingForNickname = true;
 
-    Graphics() {
+    ChatGraphics() {
         draw();
         setVisible(true);
         handleInserts();
@@ -50,6 +55,17 @@ public class Graphics extends JFrame {
         UIManager.put("ToolTip.background", new ColorUIResource(secondaryColor));
         UIManager.put("ToolTip.foreground", new ColorUIResource(Color.white));
         UIManager.put("ToolTip.border", new ColorUIResource(Color.black));
+
+        //Icon
+        String imagePath = "res/NTLogo2m.png";
+        InputStream imgStream = ChatGraphics.class.getResourceAsStream(imagePath);
+        BufferedImage icon = null;
+        try {
+            icon = ImageIO.read(imgStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setIconImage(icon);
 
         // Main panel for holding other panels
         panelMain = new JPanel(new BorderLayout());
@@ -86,6 +102,43 @@ public class Graphics extends JFrame {
         msgOutputEPSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         msgOutputEPSP.setAutoscrolls(true);
         msgOutputEPSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        msgOutputEPSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
+        msgOutputEPSP.getVerticalScrollBar().setUI(new BasicScrollBarUI()
+        {
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton jbutton = new JButton();
+                jbutton.setPreferredSize(new Dimension(0, 0));
+                jbutton.setMinimumSize(new Dimension(0, 0));
+                jbutton.setMaximumSize(new Dimension(0, 0));
+                return jbutton;
+            }
+
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D graphics2D = (Graphics2D) g.create();
+                graphics2D.setColor(secondaryColor);
+                graphics2D.fillRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height);
+                graphics2D.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D graphics2D = (Graphics2D) g.create();
+                graphics2D.setColor(new Color(36, 36, 36));
+                graphics2D.fillRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height);
+                graphics2D.dispose();
+            }
+        });
         doc = (HTMLDocument) msgOutputEP.getDocument();
         edit = (HTMLEditorKit) msgOutputEP.getEditorKit();
         msgOutputEP.setDocument(doc);
@@ -123,6 +176,43 @@ public class Graphics extends JFrame {
         listOfUsersSP.setPreferredSize(new Dimension(190, 403));
         listOfUsersSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         listOfUsersSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        listOfUsersSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
+        listOfUsersSP.getVerticalScrollBar().setUI(new BasicScrollBarUI()
+        {
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            private JButton createZeroButton() {
+                JButton jbutton = new JButton();
+                jbutton.setPreferredSize(new Dimension(0, 0));
+                jbutton.setMinimumSize(new Dimension(0, 0));
+                jbutton.setMaximumSize(new Dimension(0, 0));
+                return jbutton;
+            }
+
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D graphics2D = (Graphics2D) g.create();
+                graphics2D.setColor(secondaryColor);
+                graphics2D.fillRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height);
+                graphics2D.dispose();
+            }
+
+            @Override
+            protected void paintTrack(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D graphics2D = (Graphics2D) g.create();
+                graphics2D.setColor(new Color(36, 36, 36));
+                graphics2D.fillRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height);
+                graphics2D.dispose();
+            }
+        });
 
         // Adding components to panels
         panelMain.add(panelChat, BorderLayout.CENTER);

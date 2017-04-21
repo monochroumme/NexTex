@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Created by nadir on 02.04.2017.
  */
 public class Main {
-    static Graphics graphics;
+    static ChatGraphics chatGraphics;
     static final int DEFAULT_PORT = 22869;
     static Client selfClient;
     static Server server;
@@ -25,7 +25,7 @@ public class Main {
     }
 
     void start() {
-        graphics = new Graphics();
+        chatGraphics = new ChatGraphics();
         selfClient = new Client();
 
         // debugging
