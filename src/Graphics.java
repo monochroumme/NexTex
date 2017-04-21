@@ -5,12 +5,7 @@ import javax.swing.text.DefaultCaret;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.awt.event.*;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -29,7 +24,7 @@ public class Graphics extends JFrame {
     private HTMLEditorKit edit;
     JTextField msgInputTF;
     private JList<String> listOfUsers;
-    DefaultListModel<String> listOfUsersModel;
+    private DefaultListModel<String> listOfUsersModel;
 
 
     private Color chatColor = new Color(30, 30, 30);
@@ -38,14 +33,14 @@ public class Graphics extends JFrame {
 
     private boolean waitingForNickname = true;
 
-    public Graphics() {
+    Graphics() {
         draw();
         setVisible(true);
         handleInserts();
         log("<html><font face='arial' color='green'>/help</font><font face='arial' color='white'> - помощь</font><br><font face='arial' color='yellow'>Введите ваш ник:</font></html>");
     }
 
-    public void draw() {
+    private void draw() {
         // Window presets
         setTitle(TITLE);
         setSize(FRM_WIDTH, FRM_HEIGHT);
@@ -191,7 +186,7 @@ public class Graphics extends JFrame {
 
     private void sendButtonPressed(){
         if(waitingForNickname){
-            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 20) {
+            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 16) {
                 Main.selfClient.setNickname(msgInputTF.getText());
                 waitingForNickname = false;
                 log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");

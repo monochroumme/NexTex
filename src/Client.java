@@ -14,6 +14,7 @@ public class Client {
     PrintWriter output;
     boolean connected = false;
     private ServerListener listener;
+    String serverName;
 
     void connect(String serverIP) {
         try {
@@ -128,6 +129,9 @@ public class Client {
                         break;
                     if (msg.equals("STOP")) {
                         disconnect();
+                    } else if (msg.startsWith("NAME:")){
+                        serverName = msg.substring(msg.indexOf(":") + 1);
+                        Main.graphics.log("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
                     }
                     else if(msg.startsWith("LIST:")){
                         Main.graphics.changeList(msg);

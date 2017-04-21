@@ -142,7 +142,7 @@ public class Server{
             try {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 output = new PrintWriter(socket.getOutputStream(), true);
-                output.println("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
+                output.println("NAME:" + serverName);
                 listen();
             } catch (Exception e){
                 e.printStackTrace();

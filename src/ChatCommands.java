@@ -20,6 +20,20 @@ class ChatCommands {
             if (Utils.containsOnly(command, "clear")) {
                 Main.graphics.clearChat();
                 return;
+            } else if(Utils.containsOnly(command, "help")){
+                Main.graphics.log("<html><font face='verdana' color='yellow'>***<br>Вы на программе NexTex by <font face='verdana' color='green'>NexusGen</font>(v0.0.11)</font><br>" +
+                        "<font face='verdana' color='white'>Ваш ник: " + Main.selfClient.getNickname() + "<br>" +
+                        "Ваш IP: <font face='arial' color='yellow'>" + InetAddress.getLocalHost().getHostAddress() + "</font><br>" +
+                        "Подключен к серверу: " + (Main.selfClient.connected ? Main.selfClient.serverName : "<font face='verdana' color='red'>НЕТ ПОДКЛЮЧЕНИЯ</font>") + "<br>" +
+                        "<font face='verdana' color='yellow'>Общие команды: </font><br><font face='verdana' color='white'>" +
+                        "<font face='arial' color='green'>/set nickname &lt;<font face='arial' color='white'>nick</font>&gt;</font> - поставить ваш ник<br>" +
+                        "<font face='arial' color='green'>/clear</font> - очистить чат<br>" +
+                        "<font face='arial' color='green'>/server</font> - помощь по серверам<br>" +
+                        "<font face='arial' color='green'>/help</font> \uD83E\uDC50 вы тут<br>" +
+                        "Команды, где есть <font face='arial' color='green'>&lt;</font>ВСТАВКА<font face='verdana' color='green'>&gt;</font> писать без <font face='verdana' color='green'>&lt;&gt;</font> с соответстующей вставкой.<br>" +
+                        "<font face='arial' color='#c0c0c0'><a href='https://nexusgen.wordpress.com/'>https://nexusgen.wordpress.com/</a></font><br>" +
+                        "<font face='verdana' color='yellow'>***</font></font></html>");
+                return;
             } else if(Utils.containsOnly(command, "sendip")){
                 Main.selfClient.sendMessage(InetAddress.getLocalHost().getHostAddress());
                 return;
@@ -29,7 +43,7 @@ class ChatCommands {
                     try {
                         if(command.length == 3){
                             String newNickname = command[2];
-                            if (newNickname != null && newNickname.length() >= 1 && newNickname.length() <= 20) {
+                            if (newNickname != null && newNickname.length() >= 1 && newNickname.length() <= 16) {
                                 if (!Main.selfClient.getNickname().equals(newNickname)) {
                                     Main.selfClient.setNickname(newNickname);
                                     if(Main.selfClient.connected){
@@ -46,7 +60,7 @@ class ChatCommands {
                             } else {
                                 Main.graphics.log("<html><font face='arial' color='red'>Слишком длинный/короткий ник (от 1 до 20)</font></html>");
                             }
-                        } else if(command.length == 4 && command[2].equalsIgnoreCase("server")){
+                        } else if(command.length == 4 && Main.ownServer && command[2].equalsIgnoreCase("server")){
                             String newServerName = "<font face='WildWest' color='" + Utils.getRandomRGBColorString() + "'>" + command[3] + "</font>";
                             System.out.println(newServerName);
                             Main.server.changeServerName(newServerName);
@@ -58,8 +72,13 @@ class ChatCommands {
                 return;
             } else if (command[0].equalsIgnoreCase("server")) {
                 if (Utils.containsOnly(command, "server")) {
-                    String help = "<html></html>"; // TODO
-                    Main.graphics.log(help);
+                    Main.graphics.log("<html><font face='verdana' color='yellow'>***<br>Доступные команды:<br><font face='verdana' color='white'>" +
+                            "<font face='arial' color='green'>/server start</font> - создать новый сервер и подключиться к нему.<br>" +
+                            "<font face='arial' color='green'>/server connect &lt;<font face='arial' color='white'>IP</font>&gt;</font> - поключиться к серверу зная IP. " +
+                            "Если написать вместо IP <font face='arial' color='green'>any</font>, то автоматически найдется сервер и вы подключитесь к нему.<br>" +
+                            "<font face='arial' color='green'>/server disconnect</font> - отключиться от текущего сервера. Если вы админ сервера, то сервер выключится.<br>" +
+                            "<font face='arial' color='green'>/server find</font> - поиск доступных серверов.</font><br>" +
+                            "<font face='verdana' color='yellow'>***</font></html>");
                     return;
                 }
 
@@ -127,7 +146,6 @@ class ChatCommands {
                     Main.selfClient.disconnect();
                     return;
                 }
-                return;
             }
         } catch (Exception e){
             Main.graphics.log("<html><font face='arial' color='red'>Неизветсная команда</font></html>");
