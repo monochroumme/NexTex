@@ -24,12 +24,13 @@ public class ChatGraphics extends JFrame {
     private JPanel panelChat;
     private JPanel panelInput;
     private JButton sendBut;
-    private JEditorPane msgOutputEP;
+    JEditorPane msgOutputEP;
     private HTMLDocument doc;
     private HTMLEditorKit edit;
     JTextField msgInputTF;
     private JList<String> listOfUsers;
     private DefaultListModel<String> listOfUsersModel;
+    boolean autoscroll = true;
 
 
     private Color chatColor = new Color(30, 30, 30);
@@ -100,7 +101,7 @@ public class ChatGraphics extends JFrame {
         JScrollPane msgOutputEPSP = new JScrollPane(msgOutputEP);
         msgOutputEPSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         msgOutputEPSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        msgOutputEPSP.setAutoscrolls(true);
+        msgOutputEPSP.setAutoscrolls(false);
         msgOutputEPSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         msgOutputEPSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
         msgOutputEPSP.getVerticalScrollBar().setUI(new BasicScrollBarUI()
@@ -295,6 +296,8 @@ public class ChatGraphics extends JFrame {
     void log(String message) {
         try {
             edit.insertHTML(doc, doc.getLength(), message, 0, 0, null);
+            if(autoscroll)
+                msgOutputEP.setCaretPosition(msgOutputEP.getDocument().getLength());
         } catch (Exception e) {
             e.printStackTrace();
         }

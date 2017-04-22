@@ -20,8 +20,15 @@ class ChatCommands {
             if (Utils.containsOnly(command, "clear")) {
                 Main.chatGraphics.clearChat();
                 return;
+            } else if(Utils.containsOnly(command, "toggleautoscroll")){
+                Main.chatGraphics.autoscroll = !Main.chatGraphics.autoscroll;
+                Main.chatGraphics.msgOutputEP.setAutoscrolls(Main.chatGraphics.autoscroll);
+                if(Main.chatGraphics.autoscroll)
+                    Main.chatGraphics.log("<html><font face='verdana' color='green'>Автоскролл включен</font></html>");
+                else Main.chatGraphics.log("<html><font face='verdana' color='red'>Автоскролл выключен</font></html>");
+                return;
             } else if(Utils.containsOnly(command, "help")){
-                Main.chatGraphics.log("<html><font face='verdana' color='yellow'>***<br>Вы на программе NexTex by <font face='verdana' color='green'>NexusGen</font>(v1.0.13)</font><br>" +
+                Main.chatGraphics.log("<html><font face='verdana' color='yellow'>***<br>Вы на программе NexTex by <font face='verdana' color='green'>NexusGen</font>(v1.0.14)</font><br>" +
                         "<font face='verdana' color='white'>Ваш ник: " + Main.selfClient.getNickname() + "<br>" +
                         "Ваш IP: <font face='arial' color='yellow'>" + InetAddress.getLocalHost().getHostAddress() + "</font><br>" +
                         "Подключен к серверу: " + (Main.selfClient.connected ? Main.selfClient.serverName : "<font face='verdana' color='red'>НЕТ ПОДКЛЮЧЕНИЯ</font>") + "<br>" +
@@ -30,6 +37,7 @@ class ChatCommands {
                         "<font face='arial' color='green'>/clear</font> - очистить чат<br>" +
                         "<font face='arial' color='green'>/server</font> - помощь по серверам<br>" +
                         "<font face='arial' color='green'>/help</font> \uD83E\uDC50 вы тут<br>" +
+                        "<font face='arial' color='green'>/toggleautoscroll</font> - на всякий случай, если сломается автоскролл<br>" +
                         "Команды, где есть <font face='arial' color='green'>&lt;</font>ВСТАВКА<font face='verdana' color='green'>&gt;</font> писать без <font face='verdana' color='green'>&lt;&gt;</font> с соответстующей вставкой.<br>" +
                         "<font face='arial' color='#c0c0c0'><a href='https://nexusgen.wordpress.com/'>https://nexusgen.wordpress.com/</a></font><br>" +
                         "<font face='verdana' color='yellow'>***</font></font></html>");
