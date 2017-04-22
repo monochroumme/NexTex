@@ -21,7 +21,7 @@ class ChatCommands {
                 Main.chatGraphics.clearChat();
                 return;
             } else if(Utils.containsOnly(command, "help")){
-                Main.chatGraphics.log("<html><font face='verdana' color='yellow'>***<br>Вы на программе NexTex by <font face='verdana' color='green'>NexusGen</font>(v1.0.12)</font><br>" +
+                Main.chatGraphics.log("<html><font face='verdana' color='yellow'>***<br>Вы на программе NexTex by <font face='verdana' color='green'>NexusGen</font>(v1.0.13)</font><br>" +
                         "<font face='verdana' color='white'>Ваш ник: " + Main.selfClient.getNickname() + "<br>" +
                         "Ваш IP: <font face='arial' color='yellow'>" + InetAddress.getLocalHost().getHostAddress() + "</font><br>" +
                         "Подключен к серверу: " + (Main.selfClient.connected ? Main.selfClient.serverName : "<font face='verdana' color='red'>НЕТ ПОДКЛЮЧЕНИЯ</font>") + "<br>" +

@@ -90,6 +90,8 @@ public class Client {
 
     void disconnect() {
         if(connected) {
+            connected = false;
+            System.out.println("connected should be false");
             try {
                 Main.selfClient.output.println("LOGOUT");
             } catch (Exception e) {e.printStackTrace();}
@@ -103,7 +105,6 @@ public class Client {
             try {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
-            connected = false;
             Main.chatGraphics.clearList();
         }
     }

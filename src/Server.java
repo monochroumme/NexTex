@@ -172,6 +172,8 @@ public class Server{
                     output.println("LIST:");
                     output.println("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
                     output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
+                    if(!working)
+                        output.println("STOP");
                     try {
                         if (socket != null) socket.close();
                     } catch (Exception e) {}
