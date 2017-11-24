@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
-import java.util.Vector;
 
 /**
  * Created by nadir on 13.04.2017.
@@ -28,19 +27,7 @@ public class Utils {
     }
 
     static boolean containsOnly(String[] container, String only) {
-        if(container.length > 1)
-            return false;
-        else if(container[0].equalsIgnoreCase(only))
-            return true;
-        return false;
-    }
-
-    static boolean contains(String[] container, String only){
-        for (int i = 0; i < container.length; i++) {
-            if(container[i].equalsIgnoreCase(only))
-                return true;
-        }
-        return false;
+        return container.length == 1 && container[0].equalsIgnoreCase(only);
     }
 
     static String getRandomRGBColorString(){

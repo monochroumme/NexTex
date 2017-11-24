@@ -24,14 +24,12 @@ public class ChatGraphics extends JFrame {
     private JPanel panelChat;
     private JPanel panelInput;
     private JButton sendBut;
-    JEditorPane msgOutputEP;
+    private JEditorPane msgOutputEP;
     private HTMLDocument doc;
     private HTMLEditorKit edit;
-    JTextField msgInputTF;
     private JList<String> listOfUsers;
     private DefaultListModel<String> listOfUsersModel;
-    boolean autoscroll = true;
-
+    JTextField msgInputTF;
 
     private Color chatColor = new Color(30, 30, 30);
     private Color secondaryColor = new Color(65, 65, 65);
@@ -43,7 +41,7 @@ public class ChatGraphics extends JFrame {
         draw();
         setVisible(true);
         handleInserts();
-        log("<html><font face='arial' color='green'>/help</font><font face='arial' color='white'> - помощь</font><br><font face='arial' color='yellow'>Введите ваш ник:</font></html>");
+        log("<html><font face='arial' color='yellow'>Input your nickname:</font>");
     }
 
     private void draw() {
@@ -89,19 +87,20 @@ public class ChatGraphics extends JFrame {
         panelInput.setPreferredSize(new Dimension(800, 20));
 
         // Components' presets
-        msgOutputEP = new JTextPane();
+        msgOutputEP = new JTextPane(); // CHAT OUTPUT
         msgOutputEP.setContentType( "text/html" );
         msgOutputEP.setText("");
         msgOutputEP.setBackground(chatColor);
         msgOutputEP.setForeground(Color.white);
         msgOutputEP.setAutoscrolls(true);
         msgOutputEP.setEditable(false);
+        msgOutputEP.setMargin(new Insets(0, 3, 0 ,0));
         msgOutputEP.setSelectionColor(selectionColor);
         msgOutputEP.setSelectedTextColor(Color.white);
+        msgOutputEP.setFocusable(false);
         JScrollPane msgOutputEPSP = new JScrollPane(msgOutputEP);
         msgOutputEPSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         msgOutputEPSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        msgOutputEPSP.setAutoscrolls(false);
         msgOutputEPSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         msgOutputEPSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
         msgOutputEPSP.getVerticalScrollBar().setUI(new BasicScrollBarUI()
@@ -148,33 +147,35 @@ public class ChatGraphics extends JFrame {
         msgInputTF = new JTextField(62);
         msgInputTF.setBackground(secondaryColor);
         msgInputTF.setForeground(Color.white);
-        msgInputTF.setToolTipText("Напишите сообщение или команду и нажмите ➥ или ENTER");
+        msgInputTF.setToolTipText("Type in a message or a command and press ➥ or ENTER");
         msgInputTF.setCaretColor(Color.white);
         msgInputTF.setSelectionColor(selectionColor);
         msgInputTF.setSelectedTextColor(Color.white);
         msgInputTF.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
-
         sendBut = new JButton("➥");
         sendBut.setBackground(secondaryColor);
         sendBut.setForeground(Color.white);
         sendBut.setFocusPainted(false);
-        sendBut.setToolTipText("Отправить сообщение");
+        sendBut.setToolTipText("Send");
 
         listOfUsersModel = new DefaultListModel<>();
         listOfUsers = new JList<>(listOfUsersModel);
         listOfUsers.setSelectionModel(new NoSelectionModel());
         listOfUsers.setBackground(chatColor);
         listOfUsers.setForeground(Color.white);
-        listOfUsers.setToolTipText("Список подключенных пользователей");
+        listOfUsers.setToolTipText("List of connected users");
         listOfUsers.setSelectionBackground(selectionColor);
         listOfUsers.setSelectionForeground(Color.white);
         listOfUsers.setDragEnabled(false);
         listOfUsers.setLayoutOrientation(JList.VERTICAL);
-        listOfUsers.setAutoscrolls(true);
         listOfUsers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listOfUsers.setFocusable(false);
+        DefaultListCellRenderer renderer =  (DefaultListCellRenderer)listOfUsers.getCellRenderer();
+        renderer.setHorizontalAlignment(JLabel.CENTER);
         JScrollPane listOfUsersSP = new JScrollPane(listOfUsers);
         listOfUsersSP.setPreferredSize(new Dimension(190, 403));
+
         listOfUsersSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         listOfUsersSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         listOfUsersSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
@@ -233,7 +234,7 @@ public class ChatGraphics extends JFrame {
         // Set input area to be focused at startup
         addWindowListener( new WindowAdapter() {
             public void windowOpened( WindowEvent e ){
-                msgInputTF.requestFocus();
+                msgInputTF.grabFocus();
             }
         });
 
@@ -280,11 +281,12 @@ public class ChatGraphics extends JFrame {
             if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 16) {
                 Main.selfClient.setNickname(msgInputTF.getText());
                 waitingForNickname = false;
-                log("<html><font face='arial' color='yellow'>Ваш ник теперь " + Main.selfClient.getNickname() + "</font></html>");
+                log("<font face='arial' color='yellow'>Your nickname is now " + Main.selfClient.getNickname() + "</font>");
+                log("<font face = 'arial' color = 'white'>Type <font face='arial' color='green'>/help</font> - for help</font>");
                 Main.selfClient.automaticallyConnect();
             }
             else {
-                log("<html><font face='arial' color='red'>Некорректный ник, введите заново:</font></html>");
+                log("<font face='arial' color='red'>Nickname shouldn't contain any special symbols such as: &#60; > : ;<br>Maximal length of nickname is 16, please try again:</font>");
             }
         }
         else if (!Utils.isEmpty(msgInputTF.getText()) && !ChatCommands.isCommand(msgInputTF.getText())) {
@@ -296,8 +298,6 @@ public class ChatGraphics extends JFrame {
     void log(String message) {
         try {
             edit.insertHTML(doc, doc.getLength(), message, 0, 0, null);
-            if(autoscroll)
-                msgOutputEP.setCaretPosition(msgOutputEP.getDocument().getLength());
         } catch (Exception e) {
             e.printStackTrace();
         }

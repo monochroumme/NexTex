@@ -6,14 +6,13 @@ import java.util.ArrayList;
 public class Server{
     private static int uniqueID;
     private ArrayList<ClientListener> clients;
-    boolean working;
-    private String serverName;
     private ServerSocket serverSocket;
+    private String serverName;
+    boolean working;
 
     Server(String serverName){
         clients = new ArrayList<>();
         reset(serverName);
-        start();
     }
 
     void reset(String serverName){
@@ -21,6 +20,8 @@ public class Server{
         working = true;
         uniqueID = 0;
         clients.clear();
+        updateClientsList();
+        start();
     }
 
     private void start(){
@@ -37,9 +38,7 @@ public class Server{
                     clients.add(new ClientListener(client));
                 }
                 stop();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } catch (IOException e) {}
             finally {
                 stop();
             }
@@ -50,18 +49,17 @@ public class Server{
         String[] message = msg.split("/::/");
         switch (message[0]){
             case "LOGIN":
-                broadcast("<html><font face='arial' color='yellow'>" + message[1] + " подключился на сервер.</font></html>");
+                broadcast("<font face='arial' color='yellow'>" + message[1] + " has connected to the server</font>");
+                String color = message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>"));
+                String name = message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font"));
+                clients.get(clients.indexOf(cl)).name = message[1];
                 if(message[1].equals(Main.selfClient.getNickname())){ // if admin
-                    String color = message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>"));
-                    String name = message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font"));
                     message[1] = "<font face='Verdana Bold' color='" + color + "' size=5>" + name + "</font>";
                 }
-                else{
-                    String color = message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>"));
-                    String name = message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font"));
+                else { // if not admin
                     message[1] = "<font face='Verdana Bold' color='" + color + "' size=4>" + name + "</font>";
                 }
-                clients.get(clients.indexOf(cl)).name = message[1];
+                clients.get(clients.indexOf(cl)).listName = message[1];
                 updateClientsList();
                 break;
             case "MESSAGE":
@@ -73,8 +71,10 @@ public class Server{
                 clients.remove(cl);
                 break;
             case "NEWNICK":
-                broadcast("<html><font face='arial' color='yellow'>" + clients.get(clients.indexOf(cl)).name + " изменил свой ник на " + message[1] + "</font></html>");
+                broadcast("<font face='arial' color='yellow'>" + clients.get(clients.indexOf(cl)).name + " has changed his nickname to " + message[1] + "</font>");
                 clients.get(clients.indexOf(cl)).name = message[1];
+                clients.get(clients.indexOf(cl)).listName = "<font face='Verdana Bold' color='" + message[1].substring(message[1].indexOf("color='") + 7, message[1].indexOf("'>")) +
+                        "' size=4>" + message[1].substring(message[1].lastIndexOf("'>") + 2, message[1].indexOf("</font")) + "</font>";
                 updateClientsList();
                 break;
         }
@@ -94,10 +94,8 @@ public class Server{
     void stop(){
         working = false;
         for (ClientListener cl : clients) {
-            if(cl.name != null) {
-                cl.listen = false;
-                cl.close();
-            }
+            cl.listen = false;
+            cl.close();
         }
         if(serverSocket != null) {
             try {
@@ -106,19 +104,19 @@ public class Server{
                 e.printStackTrace();
             }
         }
-        clients.clear();
     }
 
     void changeServerName(String name){
         serverName = name;
-        broadcast("<html><font face='arial' color='yellow'>Название сервера изменено на " + serverName + "</font></html>");
+        broadcast("<font face='arial' color='yellow'>The name of the server has been changed to " + serverName + "</font>"); // sending visual message to clients
+        broadcast("NEWNAME:" + serverName); // sending the new name to clients
     }
 
     private void updateClientsList(){
         String clientsNames = "LIST";
         for (ClientListener client : clients) {
             if (client.name != null)
-                clientsNames = clientsNames.concat(":<html>" + client.name + "</html>");
+                clientsNames = clientsNames.concat(":<html>" + client.listName + "</html>");
         }
         broadcast(clientsNames);
     }
@@ -126,6 +124,7 @@ public class Server{
     class ClientListener extends Thread {
         int id;
         String name;
+        String listName;
         Socket socket;
         BufferedReader input;
         PrintWriter output;
@@ -134,19 +133,19 @@ public class Server{
         ClientListener(Socket socket){
             id = uniqueID++;
             this.socket = socket;
-            listen = true;
-            start();
-        }
-
-        public void run(){
             try {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 output = new PrintWriter(socket.getOutputStream(), true);
                 output.println("NAME:" + serverName);
-                listen();
             } catch (Exception e){
-                e.printStackTrace();
+                System.out.println("Some problem with creation input or output of client:" + name);
             }
+            listen = true;
+            start(); // starts the thread which calls run() method
+        }
+
+        public void run(){ // runs once
+            listen();
         }
 
         void listen(){
@@ -154,13 +153,10 @@ public class Server{
             try {
                 while (listen) {
                     msg = input.readLine();
-                    if (msg == null)
-                        return;
-                    handleMsg(msg, this);
+                    if (msg != null || listen)
+                        handleMsg(msg, this);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } catch (IOException e) {}
             finally {
                 close();
             }
@@ -168,25 +164,18 @@ public class Server{
 
          void close(){
             if(!listen && socket.isConnected() && !socket.isClosed()) {
-                try {
-                    output.println("LIST:");
-                    output.println("<html><font face='arial' color='red'>Сервер " + serverName + " выключен</font></html>");
-                    output.println("<html><font face='arial' color='red'>Вы отключены от сервера</font></html>");
-                    if(!working)
-                        output.println("STOP");
-                    try {
-                        if (socket != null) socket.close();
-                    } catch (Exception e) {}
-                } catch (Exception e) {}
-
-                broadcast("<html><font face='arial' color='yellow'>" + name + " вышел из сервера.</font></html>");
-                if(working)
+                if(working) {
                     clients.remove(this);
+                    if(name != null)
+                        broadcast(name + "<font face='arial' color='yellow'> has left the server</font>");
+                    updateClientsList();
+                } else
+                    output.println("STOP");
                 uniqueID--;
 
-                if(working){
-                    updateClientsList();
-                }
+                try {
+                    if (socket != null) socket.close();
+                } catch (Exception e) {}
             }
         }
     }

@@ -1,7 +1,9 @@
+import javax.swing.*;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nadir on 02.04.2017.
@@ -10,18 +12,22 @@ public class Client {
     private String nickname;
     private Socket socket;
     private BufferedReader input;
-    PrintWriter output;
-    boolean connected = false;
     private ServerListener listener;
+    boolean connected = false;
+    
     String serverName;
+    PrintWriter output;
+    ArrayList<String> lastFoundServers = new ArrayList<>();
 
     void connect(String serverIP) {
+        if(connected)
+            disconnect();
         try {
             socket = new Socket(serverIP, Main.DEFAULT_PORT);
             connected = true;
         } catch (Exception e) {
             System.out.println("Error connecting to server " + serverIP);
-            Main.chatGraphics.log("<html><font face='arial' color='red'>Сервера на данном IP нет.</font></html>");
+            Main.chatGraphics.log("<font face='arial' color='red'>No servers on that IP</font>");
             return;
         }
 
@@ -50,8 +56,8 @@ public class Client {
     void sendMessage(String msg) {
         try {
             if(!connected) {
-                Main.chatGraphics.log("<html><font face='arial' color='red'>Сначала подключитесь к серверу. Если вы не знаете как, то напишите <font face='arial' color='green'>/help</font></font></html>");
-            } else output.println("MESSAGE/::/<html>" + nickname + "<font face='verdana' color='white'>: " + msg + "</font></html>");
+                Main.chatGraphics.log("<font face='arial' color='red'>Firstly connect to a server. If you don't know how then write <font face='arial' color='green'>/help</font></font>");
+            } else output.println("MESSAGE/::/" + nickname + "<font face='verdana' color='white'>: " + msg + "</font>");
         } catch (Exception e) {
             System.out.println("Error writing to server");
         }
@@ -59,39 +65,85 @@ public class Client {
 
     void automaticallyConnect(){
         try {
-            connect(findServers(1).get(0));
+            findServers(1, true);
         } catch (Exception e) {
             System.out.println("No servers available");
         }
     }
 
-    ArrayList<String> findServers(int howMany){
-        ArrayList<String> servers = new ArrayList<>();
-        Main.chatGraphics.log("<html><font face='arial' color='yellow'>Поиск серверов...</font></html>");
+    void findServers(int howMany, boolean autoConnect){
+        Main.chatGraphics.log("<font face='arial' color='yellow'>Searching for servers...</font>");
+        Main.chatGraphics.msgInputTF.setHorizontalAlignment(JTextField.CENTER);
         Main.chatGraphics.msgInputTF.setEnabled(false);
-        Socket newSocket;
-        for (int i = 2; i < 36; i++) {
-            if (servers.size() >= howMany)
-                break;
-            try {
-                newSocket = new Socket();
-                InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, Main.DEFAULT_PORT);
-                if(isa.isUnresolved())
-                    continue;
-                newSocket.connect(isa, 25);
-                servers.add(newSocket.getInetAddress().getHostAddress());
-            } catch (Exception e) {}
-        }
-        if (servers.size() == 0)
-            Main.chatGraphics.log("<html><font face='arial' color='red'>Нет доступных серверов</font></html>");
-        Main.chatGraphics.msgInputTF.setEnabled(true);
-        return servers;
+        new SwingWorker<List<String>, Void>() {
+            @Override
+            public List<String> doInBackground() {
+                Main.chatGraphics.msgInputTF.setText("Wait..."); // SHOULDN'T BE HERE, BUT IT DOESN'T WORK THE OTHER WAY
+                List<String> servers = new ArrayList<>();
+                Socket newSocket;
+                for (int i = 2; i < 254; i++) {
+                    if (servers.size() >= howMany) {
+                        break;
+                    }
+
+                    try {
+                        newSocket = new Socket();
+                        InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, Main.DEFAULT_PORT);
+                        if (isa.isUnresolved())
+                            continue;
+                        newSocket.connect(isa, 10);
+                        servers.add(newSocket.getInetAddress().getHostAddress());
+                        new PrintWriter(newSocket.getOutputStream(), true).println("LOGOUT");
+                        newSocket.close();
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                    }
+                }
+                return servers;
+            }
+
+            @Override
+            public void done() {
+                try {
+                    List<String> servers = get();
+
+                    Main.chatGraphics.msgInputTF.setEnabled(true);
+                    Main.chatGraphics.msgInputTF.setText("");
+                    Main.chatGraphics.msgInputTF.setHorizontalAlignment(JTextField.LEFT);
+                    Main.chatGraphics.msgInputTF.grabFocus();
+
+                    if (servers.size() > 0) {
+                        if (autoConnect) {
+                            connect(servers.get(0));
+                        } else {
+                            Main.selfClient.lastFoundServers.clear();
+                            Main.selfClient.lastFoundServers.addAll(servers);
+                            String serversList = "";
+                            for (int i = 0; i < servers.size(); i++) {
+                                serversList = "<font face='arial' color='white'>" + serversList.concat((i + 1) + ") " + servers.get(i) + "<br>") + "</font>";
+                            }
+                            Main.chatGraphics.log("<font face='arial' color='yellow'>Available servers:<br></font><font face='arial' color='cyan'>" + serversList +
+                                    "</font><font face='arial' color='white'>Write </font><font face='arial' color='green'>/server connect i &lt;</font>" +
+                                    "<font face='arial' color='white'>index</font><font face='arial' color='green'>&gt;</font><font face='arial' color='white'> to connect to a server from the list </font>");
+                        }
+                    } else {
+                        Main.chatGraphics.log("<font face='arial' color='red'>No available servers</font>");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
     }
 
     void disconnect() {
+        if (Main.ownServer) {
+            if (Main.server.working)
+                Main.server.stop();
+            Main.ownServer = false;
+        }
         if(connected) {
             connected = false;
-            System.out.println("connected should be false");
             try {
                 Main.selfClient.output.println("LOGOUT");
             } catch (Exception e) {e.printStackTrace();}
@@ -106,12 +158,12 @@ public class Client {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             Main.chatGraphics.clearList();
+            Main.chatGraphics.log("<font face='arial' color='yellow'>You've been disconnected from </font>" + serverName);
         }
     }
 
     void setNickname(String name) {
-        String color = Utils.getRandomRGBColorString();
-        nickname = "<font face='WildWest' color='" + color + "'>" + name + "</font>";
+        nickname = "<font face='arial' color='" + Utils.getRandomRGBColorString() + "'>" + name + "</font>";
     }
 
     String getNickname() {
@@ -125,16 +177,20 @@ public class Client {
             while(listen){
                 try {
                     msg = input.readLine();
-                    if(msg == null)
+                    if(msg == null || !listen)
                         break;
                     if (msg.equals("STOP")) {
                         disconnect();
+                        Main.chatGraphics.log("<font face='arial' color='red'>Server " + serverName + " has been shut down</font>");
                     } else if (msg.startsWith("NAME:")){
                         serverName = msg.substring(msg.indexOf(":") + 1);
-                        Main.chatGraphics.log("<html><font face='arial' color='green'> Вы подключились к серверу " + serverName + "</font></html>");
+                        Main.chatGraphics.log("<font face='arial' color='green'> You've been connected to " + serverName + "</font>");
                     }
                     else if(msg.startsWith("LIST:")){
                         Main.chatGraphics.changeList(msg);
+                    }
+                    else if(msg.startsWith("NEWNAME:")){
+                        serverName = msg.substring(msg.indexOf(":") + 1);
                     }
                     else {
                         Main.chatGraphics.log(msg);
