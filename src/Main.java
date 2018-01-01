@@ -4,6 +4,7 @@
 public class Main {
     static ChatGraphics chatGraphics;
     static final int DEFAULT_PORT = 22869;
+    static final String DEFAULT_SEARCH_IP = Utils.getSearchIP();
     static Client selfClient;
     static Server server;
     static boolean ownServer = false;

@@ -17,7 +17,7 @@ import java.io.InputStream;
  */
 public class ChatGraphics extends JFrame {
     private final String TITLE = "NexTex";
-    private final int FRM_WIDTH = 800;
+    private final int FRM_WIDTH = 820;
     private final int FRM_HEIGHT = 490;
 
     private JPanel panelMain;
@@ -25,11 +25,13 @@ public class ChatGraphics extends JFrame {
     private JPanel panelInput;
     private JButton sendBut;
     private JEditorPane msgOutputEP;
+    private JScrollPane msgOutputEPSP;
     private HTMLDocument doc;
     private HTMLEditorKit edit;
-    private JList<String> listOfUsers;
     private DefaultListModel<String> listOfUsersModel;
+    JList<String> listOfUsers;
     JTextField msgInputTF;
+    JLabel connectionL;
 
     private Color chatColor = new Color(30, 30, 30);
     private Color secondaryColor = new Color(65, 65, 65);
@@ -92,17 +94,18 @@ public class ChatGraphics extends JFrame {
         msgOutputEP.setText("");
         msgOutputEP.setBackground(chatColor);
         msgOutputEP.setForeground(Color.white);
-        msgOutputEP.setAutoscrolls(true);
+        msgOutputEP.setAutoscrolls(false);
         msgOutputEP.setEditable(false);
         msgOutputEP.setMargin(new Insets(0, 3, 0 ,0));
         msgOutputEP.setSelectionColor(selectionColor);
         msgOutputEP.setSelectedTextColor(Color.white);
         msgOutputEP.setFocusable(false);
-        JScrollPane msgOutputEPSP = new JScrollPane(msgOutputEP);
+        msgOutputEPSP = new JScrollPane(msgOutputEP);
         msgOutputEPSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         msgOutputEPSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         msgOutputEPSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         msgOutputEPSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
+        msgOutputEPSP.setAutoscrolls(false);
         msgOutputEPSP.getVerticalScrollBar().setUI(new BasicScrollBarUI()
         {
             @Override
@@ -142,7 +145,7 @@ public class ChatGraphics extends JFrame {
         doc = (HTMLDocument) msgOutputEP.getDocument();
         edit = (HTMLEditorKit) msgOutputEP.getEditorKit();
         msgOutputEP.setDocument(doc);
-        ((DefaultCaret) msgOutputEP.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        new SmartScroller(msgOutputEPSP);
 
         msgInputTF = new JTextField(62);
         msgInputTF.setBackground(secondaryColor);
@@ -158,6 +161,7 @@ public class ChatGraphics extends JFrame {
         sendBut.setForeground(Color.white);
         sendBut.setFocusPainted(false);
         sendBut.setToolTipText("Send");
+        sendBut.setFocusable(false);
 
         listOfUsersModel = new DefaultListModel<>();
         listOfUsers = new JList<>(listOfUsersModel);
@@ -174,8 +178,7 @@ public class ChatGraphics extends JFrame {
         DefaultListCellRenderer renderer =  (DefaultListCellRenderer)listOfUsers.getCellRenderer();
         renderer.setHorizontalAlignment(JLabel.CENTER);
         JScrollPane listOfUsersSP = new JScrollPane(listOfUsers);
-        listOfUsersSP.setPreferredSize(new Dimension(190, 403));
-
+        listOfUsersSP.setPreferredSize(new Dimension(270, 0));
         listOfUsersSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         listOfUsersSP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         listOfUsersSP.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
@@ -216,10 +219,14 @@ public class ChatGraphics extends JFrame {
             }
         });
 
+        connectionL = new JLabel("<html><font face='arial' color='red'>NO CONNECTION</font></html>", JLabel.CENTER);
+        connectionL.setPreferredSize(new Dimension(0, 20));
+
         // Adding components to panels
         panelMain.add(panelChat, BorderLayout.CENTER);
         panelMain.add(panelInput, BorderLayout.SOUTH);
 
+        panelChat.add(connectionL, BorderLayout.NORTH);
         panelChat.add(msgOutputEPSP, BorderLayout.CENTER);
         panelChat.add(listOfUsersSP, BorderLayout.EAST);
 
@@ -278,7 +285,7 @@ public class ChatGraphics extends JFrame {
 
     private void sendButtonPressed(){
         if(waitingForNickname){
-            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 16) {
+            if(!Utils.isEmpty(msgInputTF.getText()) && !Utils.containsChars(msgInputTF.getText(), new String[] {"<", ">", ":", ";"}) && msgInputTF.getText().length() <= 24) {
                 Main.selfClient.setNickname(msgInputTF.getText());
                 waitingForNickname = false;
                 log("<font face='arial' color='yellow'>Your nickname is now " + Main.selfClient.getNickname() + "</font>");
@@ -286,11 +293,13 @@ public class ChatGraphics extends JFrame {
                 Main.selfClient.automaticallyConnect();
             }
             else {
-                log("<font face='arial' color='red'>Nickname shouldn't contain any special symbols such as: &#60; > : ;<br>Maximal length of nickname is 16, please try again:</font>");
+                log("<font face='arial' color='red'>Nickname shouldn't contain any special symbols such as: &#60; > : ;<br>Maximal length of nickname is 24, please try again:</font>");
             }
         }
         else if (!Utils.isEmpty(msgInputTF.getText()) && !ChatCommands.isCommand(msgInputTF.getText())) {
-            Main.selfClient.sendMessage(msgInputTF.getText());
+            if(msgInputTF.getText().startsWith("/"))
+                Main.selfClient.sendMessage(msgInputTF.getText().substring(1));
+            else Main.selfClient.sendMessage(msgInputTF.getText());
         }
         msgInputTF.setText(""); // Clear input line
     }

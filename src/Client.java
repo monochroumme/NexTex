@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.io.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -10,12 +12,13 @@ import java.util.List;
  */
 public class Client {
     private String nickname;
-    private Socket socket;
-    private BufferedReader input;
     private ServerListener listener;
     boolean connected = false;
-    
+    boolean moderator = false;
+
+    Socket socket;
     String serverName;
+    BufferedReader input;
     PrintWriter output;
     ArrayList<String> lastFoundServers = new ArrayList<>();
 
@@ -38,6 +41,7 @@ public class Client {
             output = new PrintWriter(socket.getOutputStream(), true);
         } catch (Exception e) {
             System.out.println("Error creating input/output things");
+            disconnect();
             return;
         }
 
@@ -88,13 +92,18 @@ public class Client {
 
                     try {
                         newSocket = new Socket();
-                        InetSocketAddress isa = new InetSocketAddress("192.168.1." + i, Main.DEFAULT_PORT);
+                        InetSocketAddress isa = new InetSocketAddress(Main.DEFAULT_SEARCH_IP + i, Main.DEFAULT_PORT);
                         if (isa.isUnresolved())
                             continue;
-                        newSocket.connect(isa, 10);
-                        servers.add(newSocket.getInetAddress().getHostAddress());
-                        new PrintWriter(newSocket.getOutputStream(), true).println("LOGOUT");
+                        newSocket.connect(isa, 5);
+                        BufferedReader br = new BufferedReader(new InputStreamReader(newSocket.getInputStream()));
+                        String name = br.readLine();
+                        servers.add(newSocket.getInetAddress().getHostAddress() + ":" + (name.substring(name.indexOf(':') + 1)));
+                        PrintWriter pw = new PrintWriter(newSocket.getOutputStream(), true);
+                        pw.println("LOGOUT");
                         newSocket.close();
+                        br.close();
+                        pw.close();
                     } catch (Exception e) {
                         e.getStackTrace();
                     }
@@ -114,17 +123,17 @@ public class Client {
 
                     if (servers.size() > 0) {
                         if (autoConnect) {
-                            connect(servers.get(0));
+                            connect(servers.get(0).substring(0, servers.get(0).indexOf(':')));
                         } else {
                             Main.selfClient.lastFoundServers.clear();
                             Main.selfClient.lastFoundServers.addAll(servers);
                             String serversList = "";
                             for (int i = 0; i < servers.size(); i++) {
-                                serversList = "<font face='arial' color='white'>" + serversList.concat((i + 1) + ") " + servers.get(i) + "<br>") + "</font>";
+                                serversList = "<font face='arial' color='white'>" + serversList.concat((i + 1) + ") " + servers.get(i).substring(servers.get(i).indexOf(':') + 1) + "<br>") + "</font>";
                             }
                             Main.chatGraphics.log("<font face='arial' color='yellow'>Available servers:<br></font><font face='arial' color='cyan'>" + serversList +
                                     "</font><font face='arial' color='white'>Write </font><font face='arial' color='green'>/server connect i &lt;</font>" +
-                                    "<font face='arial' color='white'>index</font><font face='arial' color='green'>&gt;</font><font face='arial' color='white'> to connect to a server from the list </font>");
+                                    "<font face='arial' color='white'>INDEX</font><font face='arial' color='green'>&gt;</font><font face='arial' color='white'> to connect to a server from the list </font>");
                         }
                     } else {
                         Main.chatGraphics.log("<font face='arial' color='red'>No available servers</font>");
@@ -144,21 +153,18 @@ public class Client {
         }
         if(connected) {
             connected = false;
+            System.out.println("Disconnected from " + socket.getInetAddress().toString().substring(1));
             try {
                 Main.selfClient.output.println("LOGOUT");
-            } catch (Exception e) {e.printStackTrace();}
+            } catch (Exception e) {}
             listener.listen = false;
             try {
                 if (input != null) input.close();
-            } catch (Exception e) {}
-            try {
                 if (output != null) output.close();
-            } catch (Exception e) {}
-            try {
                 if (socket != null && !socket.isClosed()) socket.close();
             } catch (Exception e) {}
             Main.chatGraphics.clearList();
-            Main.chatGraphics.log("<font face='arial' color='yellow'>You've been disconnected from </font>" + serverName);
+            Main.chatGraphics.connectionL.setText("<html><font face='arial' color='red'>NO CONNECTION</font></html>");
         }
     }
 
@@ -181,16 +187,49 @@ public class Client {
                         break;
                     if (msg.equals("STOP")) {
                         disconnect();
+                        if(!Main.ownServer)
+                            Main.chatGraphics.log("<font face='arial' color='yellow'>You've been disconnected from </font>" + Main.selfClient.serverName);
                         Main.chatGraphics.log("<font face='arial' color='red'>Server " + serverName + " has been shut down</font>");
                     } else if (msg.startsWith("NAME:")){
                         serverName = msg.substring(msg.indexOf(":") + 1);
                         Main.chatGraphics.log("<font face='arial' color='green'> You've been connected to " + serverName + "</font>");
+                        Main.chatGraphics.connectionL.setText("<html><font face='arial' color='green'>Connected to </font>" + serverName + "</html>");
                     }
                     else if(msg.startsWith("LIST:")){
                         Main.chatGraphics.changeList(msg);
                     }
                     else if(msg.startsWith("NEWNAME:")){
                         serverName = msg.substring(msg.indexOf(":") + 1);
+                        Main.chatGraphics.connectionL.setText("<html><font face='arial' color='green'>Connected to </font>" + serverName + "</html>");
+                    }
+                    else if (msg.startsWith("BLACKLIST:")){
+                        String[] blacklist = msg.split(":");
+                        Main.chatGraphics.log("<font face='arial' color='yellow'>Banned users' IPs:</font>");
+                        if(blacklist.length == 1)
+                            Main.chatGraphics.log("<font face='arial' color='red'>No banned users</font>");
+                        else {
+                            for (int i = 1; i < blacklist.length; i++)
+                                Main.chatGraphics.log("<font face='arial' color='white'>" + i + ") </font><font face='arial' color='red'>" + blacklist[i] + "</font>");
+                            Main.chatGraphics.log("<font face='arial' color='white'>If you're admin/moderator you can unban users using " +
+                                    "<font face='arial' color='green'>/server unban &lt;<font face='arial' color='white'>INDEX</font>></font>");
+                        }
+                    }
+                    else if (msg.equals("MOD")){
+                        moderator = true;
+                    }
+                    else if (msg.equals("UNMOD")) {
+                        moderator = false;
+                    }
+                    else if (msg.equals("KICK")) {
+                        disconnect();
+                        Main.chatGraphics.log("<font face='arial' color='red'>You've been kicked from </font>" + serverName);
+                    }
+                    else if (msg.equals("BANN")) {
+                        disconnect();
+                        Main.chatGraphics.log("<font face='arial' color='red'>You've been banned from </font>" + serverName);
+                    }
+                    else if (msg.equals("DISCONNECT")){
+                        disconnect();
                     }
                     else {
                         Main.chatGraphics.log(msg);
